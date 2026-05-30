@@ -1,0 +1,289 @@
+import React, { useRef, useState } from 'react';
+import { useScroll, useTransform, motion, AnimatePresence } from 'framer-motion';
+import { ArrowUpRight, Code, Globe } from 'lucide-react';
+import { FadeIn } from '../components/FadeIn';
+
+interface Project {
+  volume: string;
+  category: string;
+  name: string;
+  abstract: string;
+  tech: string[];
+  image: string;
+  liveLink: string;
+  githubLink: string;
+  telemetry: string;
+}
+
+export const ProjectsSection: React.FC = () => {
+  const projects: Project[] = [
+    {
+      volume: 'VOL. 01',
+      category: 'ACOUSTIC INTELLIGENCE // ML',
+      name: 'EchoMind',
+      abstract: 'AI-powered acoustic surveillance platform for smart cities. It analyses ambient audio in real-time to detect hidden threats like gunshots, breaking glass, and human screams. With explainable AI and automated Twilio SMS alerts, it ensures rapid, transparent security responses.',
+      tech: ['React.js', 'FastAPI', 'Python', 'Twilio', 'WebSockets'],
+      image: '/assets/project_echomind.png',
+      liveLink: 'https://echomind-multi-agent-audio-intelligence.onrender.com/',
+      githubLink: 'https://github.com/shreya-roy1/EchoMind---Multi-Agent-Audio-Intelligence',
+      telemetry: 'DETECT_LATENCY: 12ms | THREAT_SCAN: ENGAGED',
+    },
+    {
+      volume: 'VOL. 02',
+      category: 'SECURE CRYPTOGRAPHY // WEB',
+      name: 'Cipher Model',
+      abstract: 'AI-powered web platform that provides smart encryption, secure data handling, and modern cybersecurity solutions through an interactive and user-friendly interface.',
+      tech: ['React.js', 'JavaScript', 'Node.js', 'Web Cryptography'],
+      image: '/assets/project_cipher.png',
+      liveLink: 'https://cipher-model.vercel.app/',
+      githubLink: 'https://github.com/shreya-roy1/cipher-model',
+      telemetry: 'KEY_STRENGTH: AES-GCM 256 | ENCRYPT: STABLE',
+    },
+    {
+      volume: 'VOL. 03',
+      category: 'BROWSER SECURITY // GO',
+      name: 'Phishing Sentinel',
+      abstract: 'An AI-powered browser security system that detects phishing websites in real time using a machine learning model and a high-performance backend built with Go. The project focuses on real-time security by analyzing a webpage\'s DOM to detect and block phishing sites instantly.',
+      tech: ['Go', 'Chrome Extension', 'Machine Learning', 'DOM Parser'],
+      image: '/assets/project_phishing.png',
+      liveLink: 'https://chromewebstore.google.com/detail/sentinel-suite-phishing-g/ankdnkinpgjkncgjphbjdpjaallligim?utm_source=github-repo',
+      githubLink: 'https://github.com/shreya-roy1/Phishing-Sentinel',
+      telemetry: 'DOM_SCAN: ACTIVE | GO_SERVICE: ACTIVE',
+    },
+    {
+      volume: 'VOL. 04',
+      category: 'PARAMETRIC INSURANCE // FINTECH',
+      name: 'SafeRide Shield',
+      abstract: 'An AI-driven parametric income insurance platform specifically designed for gig workers. Unlike traditional insurance, it utilizes external data triggers to automate payouts. A key feature is the "Rain Curfew", which uses zero-touch automation to compensate riders when adverse weather conditions prevent them from working, ensuring financial stability without a manual claims process.',
+      tech: ['React.js', 'Node.js', 'Firebase', 'OpenWeather API'],
+      image: '/assets/project_saferide.png',
+      liveLink: 'https://saferide-shield.vercel.app/',
+      githubLink: 'https://github.com/shreya-roy1/SafeRide-Shield',
+      telemetry: 'RAIN_CURFEW: ENGAGED | ZERO_TOUCH_PAYOUT: STABLE',
+    },
+    {
+      volume: 'VOL. 05',
+      category: 'MULTI-AGENT FINANCIALS // CYBER',
+      name: 'ArmorClaw',
+      abstract: 'A Delegation-Safe Multi-Agent Financial Trading System. It addresses security in automated trading by implementing an Intent Enforcement Layer. This layer acts as a gatekeeper, validating every move made by trading agents against a pre-defined security policy. By doing so, it proactively blocks unauthorized or malicious transactions, ensuring that delegated agents operate strictly within their intended bounds.',
+      tech: ['Python', 'FastAPI', 'Multi-Agent Framework', 'Security Policy'],
+      image: '/assets/project_ai.png',
+      liveLink: 'https://armorclaw-safe-financial-trading-sy.vercel.app/',
+      githubLink: 'https://github.com/shreya-roy1/Delegation-Safe-Financial-Trading-System',
+      telemetry: 'INTENT_GATEKEEPER: ENFORCED | ANOMALY_FILTER: ACTIVE',
+    },
+    {
+      volume: 'VOL. 06',
+      category: 'ACADEMIC PORTALS // DATABASE',
+      name: 'Student Admission Portal',
+      abstract: 'Web-based management system that streamlines the student admission process with features like registration, application tracking, and secure data management through a simple and responsive interface.',
+      tech: ['HTML5', 'CSS3', 'JavaScript', 'MySQL', 'Node.js'],
+      image: '/assets/project_saas.png',
+      liveLink: 'https://student-admission-portal-59mf.onrender.com/',
+      githubLink: 'https://github.com/shreya-roy1/student-admission-portal',
+      telemetry: 'ADMISSION_DB: SECURED | DB_TRANSACTIONS: 100%',
+    },
+    {
+      volume: 'VOL. 07',
+      category: 'HR INFRASTRUCTURE // BACKEND',
+      name: 'Employee Management System',
+      abstract: 'A software application designed to manage employee data, attendance, roles, and performance efficiently. It automates manual HR tasks, ensuring accuracy, transparency, and quick access to information.',
+      tech: ['Java', 'SQL', 'JDBC', 'HTML5', 'Tailwind CSS'],
+      image: '/assets/project_cloud.png',
+      liveLink: 'https://github.com/shreya-roy1/Employee_Management_system_Website',
+      githubLink: 'https://github.com/shreya-roy1/Employee_Management_system_Website',
+      telemetry: 'HR_AUTOMATION: ACTIVE | ATTENDANCE_SYNC: STABLE',
+    },
+  ];
+
+  return (
+    <section
+      id="projects"
+      className="bg-[#030305] text-[#E2E8F0] pt-24 pb-20 relative z-30"
+    >
+      <div className="max-w-5xl mx-auto px-5 sm:px-8 md:px-10">
+
+        {/* Section Heading */}
+        <div className="flex flex-col gap-3 mb-16 md:mb-24">
+          <FadeIn direction="up" distance={20} delay={0}>
+            <span className="font-mono text-xs text-quantumCyan uppercase tracking-[0.25em] font-bold">
+              03 // SCIENTIFIC COMPILATIONS
+            </span>
+          </FadeIn>
+          <FadeIn direction="up" distance={30} delay={0.1}>
+            <h2 className="silver-heading font-black uppercase tracking-tight text-[2.5rem] sm:text-[4rem] md:text-[5rem] leading-none">
+              Research & Projects
+            </h2>
+          </FadeIn>
+        </div>
+
+        {/* Stacking Slide Deck Cards Container */}
+        <div className="flex flex-col gap-24 md:gap-32 relative">
+          {projects.map((project, idx) => (
+            <ProjectCard
+              key={project.volume}
+              project={project}
+              index={idx}
+              totalCards={projects.length}
+            />
+          ))}
+          {/* Spacing cushion block inside parent container to let the last sticky card scroll away before the footer enters */}
+          <div className="h-[25vh] sm:h-[30vh] pointer-events-none" />
+        </div>
+
+      </div>
+    </section>
+  );
+};
+
+interface ProjectCardProps {
+  project: Project;
+  index: number;
+  totalCards: number;
+}
+
+const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, totalCards }) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
+
+  // Track scroll position of this specific card wrapper
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ['start start', 'end start'],
+  });
+
+  // Scale down preceding cards slightly as the user scrolls past (deck slides effect)
+  const targetScale = 1 - (totalCards - 1 - index) * 0.03;
+  const scale = useTransform(scrollYProgress, [0, 1], [1, targetScale]);
+
+  return (
+    <div
+      ref={cardRef}
+      className="h-[80vh] md:h-[85vh] flex items-start justify-center sticky top-24 md:top-32 w-full"
+    >
+      <motion.div
+        style={{
+          scale,
+          top: `calc(96px + ${index * 28}px)`, // Stacking offset
+          willChange: 'transform, scale',
+        }}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        className="w-full h-[95%] rounded-[30px] md:rounded-[40px] border border-white/10 bg-[#030305] p-6 md:p-10 flex flex-col justify-between shadow-[0_-15px_40px_rgba(0,0,0,0.8)] relative group overflow-hidden glass-card transition-colors duration-500 hover:border-quantumCyan/20 pointer-events-auto"
+      >
+        {/* Research Paper Styled Header */}
+        <div className="flex justify-between items-start border-b border-white/10 pb-4 md:pb-6">
+          <div className="flex flex-col gap-1.5">
+            <div className="font-mono text-xs text-quantumCyan tracking-wider uppercase font-bold flex items-center gap-2">
+              <span>{project.volume}</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-white/20" />
+              <span>{project.category}</span>
+            </div>
+
+            <h3 className="font-extrabold uppercase tracking-tight text-xl md:text-3xl lg:text-4xl text-white mt-1">
+              {project.name}
+            </h3>
+          </div>
+
+          {/* Research volume publication format label */}
+          <div className="font-mono text-[9px] text-[#E2E8F0]/30 hidden sm:flex flex-col items-end text-right">
+            <span>CLASSIFICATION: STABLE</span>
+            <span>PUBLISHED: MAY_2026</span>
+          </div>
+        </div>
+
+        {/* Middle Area: Research Abstract & Tags Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 my-4 md:my-6 items-center">
+          {/* Abstract Description (Col Span 2) */}
+          <div className="md:col-span-2 flex flex-col gap-3">
+            <span className="font-mono text-[9px] text-quantumCyan/70 uppercase tracking-widest font-bold">
+              [ RESEARCH_ABSTRACT ]
+            </span>
+            <p className="text-[#E2E8F0]/70 font-light text-xs md:text-sm leading-relaxed max-w-xl">
+              {project.abstract}
+            </p>
+          </div>
+
+          {/* Technology Tags (Col Span 1) */}
+          <div className="flex flex-col gap-2.5">
+            <span className="font-mono text-[9px] text-purple-400/80 uppercase tracking-widest font-bold">
+              [ STACK_REGISTRY ]
+            </span>
+            <div className="flex flex-wrap gap-1.5">
+              {project.tech.map((pill) => (
+                <span
+                  key={pill}
+                  className="px-2.5 py-1 rounded-md border border-white/5 text-[9px] md:text-[10px] font-mono text-[#E2E8F0]/80 bg-white/5 uppercase"
+                >
+                  {pill}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Section: Borderless Screen Image showcasing Zoom Hover */}
+        <div className="flex-grow relative overflow-hidden rounded-2xl bg-zinc-950/80 border border-white/5 group-hover:border-quantumCyan/10">
+          <motion.img
+            src={project.image}
+            alt={`${project.name} Interface Dashboard`}
+            animate={{ scale: isHovered ? 1.03 : 1 }}
+            transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+            className="w-full h-full object-cover select-none pointer-events-none opacity-60 group-hover:opacity-85 transition-opacity duration-500"
+            loading="lazy"
+          />
+
+          {/* Subtle bottom telemetry overlay lines inside visual */}
+          <div className="absolute bottom-4 left-6 right-6 flex justify-between items-center z-10 pointer-events-none select-none">
+            <span className="font-mono text-[9px] text-quantumCyan/80 tracking-widest uppercase font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+              {project.telemetry}
+            </span>
+            <span className="font-mono text-[8px] text-white/30 hidden sm:inline uppercase">
+              GRID_SCAN: PASS
+            </span>
+          </div>
+
+          {/* Gradient backdrop */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+
+          {/* Floating Hover Links Arrow Overlay */}
+          <AnimatePresence>
+            {isHovered && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                className="absolute inset-0 z-20 flex items-center justify-center gap-4 bg-black/40 backdrop-blur-xs pointer-events-auto"
+              >
+                <a
+                  href={project.liveLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 px-4.5 py-2.5 rounded-full border border-quantumCyan bg-quantumCyan/10 text-quantumCyan text-xs uppercase tracking-widest font-bold shadow-[0_0_15px_rgba(0,240,255,0.25)] hover:bg-quantumCyan/20 transition-all duration-300 select-none"
+                >
+                  <Globe size={13} />
+                  <span>LIVE_DEMO</span>
+                  <ArrowUpRight size={12} className="shrink-0" />
+                </a>
+
+                <a
+                  href={project.githubLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 px-4.5 py-2.5 rounded-full border border-[#E2E8F0]/30 bg-transparent text-[#E2E8F0] text-xs uppercase tracking-widest font-bold hover:bg-white/10 hover:border-white/50 transition-all duration-300 select-none"
+                >
+                  <Code size={13} />
+                  <span>REPOSITORY</span>
+                  <ArrowUpRight size={12} className="shrink-0" />
+                </a>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
+      </motion.div>
+    </div>
+  );
+};
+
+export default ProjectsSection;
