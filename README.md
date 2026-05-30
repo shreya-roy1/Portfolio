@@ -1,8 +1,8 @@
-# 🌌 Shreya Roy | Full-Stack & Cyber-Security Portfolio
+# 🌌 Shreya Roy
 
 Welcome to my personal developer portfolio—an immersive, high-fidelity dark-space interactive experience built using **React**, **TypeScript**, and **Framer Motion**. Designed as a high-tech terminal, it showcases real-world engineering, active cybersecurity deployments, and machine learning research with sleek cybernetic accents.
 
-📊 **Live Experience**: [shreya-roy1.github.io](https://shreya-roy1.github.io) (or your deployment URL)
+📊 **Live Experience**: https://portfolio-27.vercel.app/
 📂 **Resume/CV**: Available for download directly in the portal as a PDF or docx!
 
 ---
