@@ -79,7 +79,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             {/* Monospaced tag */}
             <FadeIn direction="left" distance={20} delay={0.25}>
               <p className="font-mono text-quantumCyan text-xs sm:text-sm tracking-[0.2em] font-semibold uppercase">
-                &gt; FULL_STACK_ENGINEER
+                &gt; FULL-STACK ENGINEER
               </p>
             </FadeIn>
 

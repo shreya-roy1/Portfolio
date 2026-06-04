@@ -73,13 +73,12 @@ export const FooterSection: React.FC<FooterSectionProps> = ({ onResumeClick }) =
             </GhostActionButton>
 
             <GhostActionButton
-              href="/Resume.pdf"
-              download="Shreya_Roy_Resume.pdf"
+              href="#resume-preview"
               icon={Download}
               onClick={onResumeClick}
               className="w-full !py-4.5 text-base border-white/10 hover:border-quantumCyan font-semibold bg-white/5 hover:text-quantumCyan transition-all duration-300"
             >
-              Download CV
+              See CV
             </GhostActionButton>
           </div>
         </FadeIn>

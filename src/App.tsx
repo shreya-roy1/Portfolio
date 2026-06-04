@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Mail, MessageSquare, Send, X, CheckCircle2, Home, User, Briefcase, Share2 } from 'lucide-react';
+import { Mail, MessageSquare, Send, X, CheckCircle2, Home, User, Briefcase, Share2, Download } from 'lucide-react';
 import HeroSection from './sections/HeroSection';
 import AboutSection from './sections/AboutSection';
 import TechMatrixSection from './sections/TechMatrixSection';
@@ -9,6 +9,7 @@ import FooterSection from './sections/FooterSection';
 
 export const App: React.FC = () => {
   const [isContactOpen, setIsContactOpen] = useState(false);
+  const [isResumeOpen, setIsResumeOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   
   // Header animation states
@@ -83,9 +84,9 @@ export const App: React.FC = () => {
     }, 1500);
   };
 
-  const handleDownloadResume = () => {
-    showToast('TRANSMISSION INITIATED. Opening Shreya_Roy_Resume.pdf.');
-    window.open('/Resume.pdf', '_blank');
+  const handleResumePreview = (e?: React.MouseEvent<HTMLAnchorElement>) => {
+    e?.preventDefault();
+    setIsResumeOpen(true);
   };
 
   const showToast = (message: string) => {
@@ -189,8 +190,65 @@ export const App: React.FC = () => {
 
       {/* 4. Footer Section (Socials & Resume download) */}
       <div ref={contactRef}>
-        <FooterSection onResumeClick={handleDownloadResume} />
+        <FooterSection onResumeClick={handleResumePreview} />
       </div>
+
+      {/* Resume Preview Modal */}
+      <AnimatePresence>
+        {isResumeOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[60] flex items-center justify-center p-4"
+          >
+            <div
+              onClick={() => setIsResumeOpen(false)}
+              className="absolute inset-0 bg-black/85 backdrop-blur-md"
+            />
+
+            <motion.div
+              initial={{ opacity: 0, y: 18, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 18, scale: 0.98 }}
+              transition={{ duration: 0.25 }}
+              className="relative z-10 w-full max-w-6xl rounded-3xl border border-white/10 bg-[#030305]/95 p-3 md:p-4 shadow-[0_30px_80px_rgba(0,0,0,0.9)]"
+            >
+              <div className="flex items-center justify-between gap-3 border-b border-white/10 pb-3">
+                <div>
+                  <p className="text-[10px] uppercase tracking-[0.35em] text-quantumCyan">Resume Preview</p>
+                  <h3 className="text-sm md:text-base font-semibold text-[#E2E8F0]">Shreya Roy — CV</h3>
+                </div>
+                <div className="flex items-center gap-2">
+                  <a
+                    href="/Resume.pdf"
+                    download="Shreya_Roy_Resume.pdf"
+                    className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-[11px] uppercase tracking-[0.2em] text-[#E2E8F0] hover:bg-white/10 hover:text-quantumCyan transition-colors"
+                  >
+                    <Download size={14} />
+                    Download
+                  </a>
+                  <button
+                    onClick={() => setIsResumeOpen(false)}
+                    className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-[#E2E8F0] hover:bg-white/10 hover:text-quantumCyan transition-colors"
+                    aria-label="Close resume preview"
+                  >
+                    <X size={16} />
+                  </button>
+                </div>
+              </div>
+
+              <div className="mt-3 overflow-hidden rounded-2xl border border-white/10 bg-white">
+                <iframe
+                  src="/Resume.pdf"
+                  title="Shreya Roy Resume"
+                  className="h-[70vh] w-full min-h-[420px]"
+                />
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Glassmorphic Contact Dialog / Modal */}
       <AnimatePresence>

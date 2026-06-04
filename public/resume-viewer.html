@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shreya Roy - Resume Preview</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        font-family: Inter, Arial, Helvetica, sans-serif;
+      }
+
+      * { box-sizing: border-box; }
+      html, body {
+        margin: 0;
+        width: 100%;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #030305 0%, #0b1020 55%, #04070f 100%);
+        color: #e2e8f0;
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 12px 14px;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+        background: rgba(3, 3, 5, 0.92);
+        backdrop-filter: blur(12px);
+        position: sticky;
+        top: 0;
+        z-index: 5;
+      }
+
+      .title-wrap {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .eyebrow {
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        font-size: 11px;
+        color: #8ddcff;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 16px;
+        line-height: 1.1;
+      }
+
+      .actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .download-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 8px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(255,255,255,0.14);
+        background: rgba(255,255,255,0.06);
+        color: #f8fbff;
+        text-decoration: none;
+        font-size: 12px;
+        font-weight: 600;
+        transition: transform 140ms ease, background 140ms ease;
+      }
+
+      .download-btn:hover {
+        transform: translateY(-1px);
+        background: rgba(141, 220, 255, 0.12);
+      }
+
+      .download-icon {
+        font-size: 14px;
+        line-height: 1;
+      }
+
+      .viewer-shell {
+        flex: 1;
+        padding: 12px;
+      }
+
+      iframe {
+        width: 100%;
+        height: calc(100vh - 72px);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 18px;
+        background: #ffffff;
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+      }
+
+      @media (max-width: 640px) {
+        .topbar { padding: 10px; }
+        h1 { font-size: 14px; }
+        .download-btn span:last-child { display: none; }
+        iframe { height: calc(100vh - 66px); border-radius: 14px; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="title-wrap">
+        <span class="eyebrow">Resume Preview</span>
+        <h1>Shreya Roy — Full-Stack & Cyber-Security CV</h1>
+      </div>
+      <div class="actions">
+        <a class="download-btn" href="/Resume.pdf" download="Shreya_Roy_Resume.pdf" aria-label="Download resume PDF">
+          <span class="download-icon">⬇</span>
+          <span>Download</span>
+        </a>
+      </div>
+    </header>
+
+    <main class="viewer-shell">
+      <iframe src="/Resume.pdf" title="Shreya Roy Resume PDF"></iframe>
+    </main>
+  </body>
+</html>

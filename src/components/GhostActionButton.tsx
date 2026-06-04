@@ -28,12 +28,15 @@ export const GhostActionButton: React.FC<GhostActionButtonProps> = ({
   `;
 
   if (href) {
+    const isExternal = /^https?:\/\//i.test(href);
+
     return (
       <a
         href={href}
         download={download}
-        target={href.startsWith('#') ? undefined : "_blank"}
-        rel={href.startsWith('#') ? undefined : "noopener noreferrer"}
+        target={isExternal ? '_blank' : undefined}
+        rel={isExternal ? 'noopener noreferrer' : undefined}
+        onClick={onClick}
         className={baseClasses}
       >
         {children}
