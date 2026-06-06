@@ -2,8 +2,8 @@
 
 Welcome to my personal developer portfolio—an immersive, high-fidelity dark-space interactive experience built using **React**, **TypeScript**, and **Framer Motion**. Designed as a high-tech terminal, it showcases real-world engineering, active cybersecurity deployments, and machine learning research with sleek cybernetic accents.
 
-📊 **Live Experience**: https://portfolio-27.vercel.app/ <br>
-📂 **Resume/CV**: Available for download directly in the portal as a PDF or docx!
+📊 **Live Experience**: https://shreya-roy.vercel.app/ <br>
+📂 **Resume/CV**: Available directly in the portal!
 
 ---
 
