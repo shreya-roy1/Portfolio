@@ -66,7 +66,7 @@ Welcome to my personal developer portfolio—an immersive, high-fidelity dark-sp
 *   **Stack**: Next.js, Go, Apache Kafka, D3.js, WebSockets
 *   **Features**: Ingests multi-feed transaction telemetry to detect anomalies, maps cash-routing via interactive 2D graphs, and auto-compiles compliance reports within a brutalist, high-density dark-themed simulation canvas.
 *   **Code**: [OmniShield Repository](https://github.com/shreya-roy1/OmniShield)
-*   **Demo**: [OmniShield Live]()
+*   **Demo**: [OmniShield Live](https://github.com/shreya-roy1/OmniShield)
 
 
 ### 6. ArmorClaw 🛡️🐾
