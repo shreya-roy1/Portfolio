@@ -61,21 +61,29 @@ Welcome to my personal developer portfolio—an immersive, high-fidelity dark-sp
 *   **Code**: [SafeRide Shield Repository](https://github.com/shreya-roy1/SafeRide-Shield)
 *   **Demo**: [SafeRide Shield Live](https://saferide-shield.vercel.app/)
 
-### 5. ArmorClaw 🛡️🐾
+### 5. OmniShield 🛡️
+*   **Domain**: FinTech // Fraud Intelligence
+*   **Stack**: Next.js, Go, Apache Kafka, D3.js, WebSockets
+*   **Features**: Ingests multi-feed transaction telemetry to detect anomalies, maps cash-routing via interactive 2D graphs, and auto-compiles compliance reports within a brutalist, high-density dark-themed simulation canvas.
+*   **Code**: [OmniShield Repository](https://github.com/shreya-roy1/OmniShield)
+*   **Demo**: [OmniShield Live]()
+
+
+### 6. ArmorClaw 🛡️🐾
 *   **Domain**: Multi-Agent Financials // SecOps
 *   **Stack**: Python, FastAPI, Multi-Agent Framework, Intent Policy Engines
 *   **Features**: A delegation-safe financial trading portal protecting autonomous trading scripts via an Intent Enforcement Layer to block anomalous transactions.
 *   **Code**: [ArmorClaw Repository](https://github.com/shreya-roy1/Delegation-Safe-Financial-Trading-System)
 *   **Demo**: [ArmorClaw Live](https://armorclaw-safe-financial-trading-sy.vercel.app/)
 
-### 6. Student Admission Portal 🎓
+### 7. Student Admission Portal 🎓
 *   **Domain**: Academic Databases
 *   **Stack**: HTML5, CSS3, JavaScript, MySQL, Node.js
 *   **Features**: Fully responsive enrollment portal for seamless application review, intake logging, and administrative queries.
 *   **Code**: [Student Admission Portal Repository](https://github.com/shreya-roy1/student-admission-portal)
 *   **Demo**: [Admission Portal Live](https://student-admission-portal-59mf.onrender.com/)
 
-### 7. Employee Management System 👥
+### 8. Employee Management System 👥
 *   **Domain**: HR Infrastructure // Backend Services
 *   **Stack**: Java, SQL, JDBC, HTML5, Tailwind CSS
 *   **Features**: Lightweight, secure enterprise-level administrative panel managing employee records, real-time logging, and role assignments.
