@@ -112,10 +112,10 @@ export const ProjectsSection: React.FC = () => {
       id="projects"
       className="bg-[#030305] text-[#E2E8F0] pt-24 pb-20 relative z-30"
     >
-      <div className="max-w-5xl mx-auto px-5 sm:px-8 md:px-10">
+      <div className="w-full px-4 sm:px-6 md:px-8 lg:px-10">
 
         {/* Section Heading */}
-        <div className="flex flex-col gap-3 mb-16 md:mb-24">
+        <div className="max-w-5xl mx-auto flex flex-col gap-3 mb-16 md:mb-24">
           <FadeIn direction="up" distance={20} delay={0}>
             <span className="font-mono text-xs text-quantumCyan uppercase tracking-[0.25em] font-bold">
               03 // SCIENTIFIC COMPILATIONS
@@ -129,7 +129,7 @@ export const ProjectsSection: React.FC = () => {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-5 relative items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-x-4 gap-y-10 md:gap-x-5 md:gap-y-14 relative items-stretch">
           {projects.map((project, idx) => (
             <ProjectCard
               key={project.volume}
@@ -163,9 +163,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, totalCards })
     offset: ['start start', 'end start'],
   });
 
-  // Scale down preceding cards slightly as the user scrolls past (deck slides effect)
-  const targetScale = 1 - (totalCards - 1 - index) * 0.03;
+  // Keep a subtle scroll effect without compressing the grid too much.
+  const targetScale = 1 - (totalCards - 1 - index) * 0.02;
   const scale = useTransform(scrollYProgress, [0, 1], [1, targetScale]);
+  const translateY = useTransform(scrollYProgress, [0, 1], [0, index * 18]);
 
   return (
     <div
@@ -175,6 +176,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, totalCards })
       <motion.div
         style={{
           scale,
+          y: translateY,
           willChange: 'transform, scale',
         }}
         onMouseEnter={() => setIsHovered(true)}
