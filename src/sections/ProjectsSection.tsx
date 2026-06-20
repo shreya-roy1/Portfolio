@@ -52,6 +52,17 @@ export const ProjectsSection: React.FC = () => {
     },
     {
       volume: 'VOL. 04',
+      category: 'BANKING FRAUD INTELLIGENCE // SIMULATION',
+      name: 'OmniShield',
+      abstract: 'Military-grade banking fraud intelligence platform detecting anomalies and mapping cash-routing through real-time telemetry and automated compliance reporting.',
+      tech: ['React.js', 'Data Visualization', 'Fraud Detection', 'Compliance'],
+      image: '/assets/project_crypto.png',
+      liveLink: 'https://github.com/shreya-roy1/OmniShield',
+      githubLink: 'https://github.com/shreya-roy1/OmniShield',
+      telemetry: 'FRAUD_TRACE: LIVE | COMPLIANCE_MATRIX: ARMED',
+    },
+    {
+      volume: 'VOL. 05',
       category: 'PARAMETRIC INSURANCE // FINTECH',
       name: 'SafeRide Shield',
       abstract: 'AI-driven parametric insurance platform securing gig worker income through zero-touch, automated payouts triggered by real-time weather and external data.',
@@ -62,7 +73,7 @@ export const ProjectsSection: React.FC = () => {
       telemetry: 'RAIN_CURFEW: ENGAGED | ZERO_TOUCH_PAYOUT: STABLE',
     },
     {
-      volume: 'VOL. 05',
+      volume: 'VOL. 06',
       category: 'MULTI-AGENT FINANCIALS // CYBER',
       name: 'ArmorClaw',
       abstract: 'Delegation-safe multi-agent financial trading system securing automated transactions through an Intent Enforcement Layer that proactively blocks unauthorized or malicious actions.',
@@ -73,7 +84,7 @@ export const ProjectsSection: React.FC = () => {
       telemetry: 'INTENT_GATEKEEPER: ENFORCED | ANOMALY_FILTER: ACTIVE',
     },
     {
-      volume: 'VOL. 06',
+      volume: 'VOL. 07',
       category: 'ACADEMIC PORTALS // DATABASE',
       name: 'Student Admission Portal',
       abstract: 'Web-based management system streamlining student admissions with secure registration and application tracking through a responsive interface.',
@@ -84,7 +95,7 @@ export const ProjectsSection: React.FC = () => {
       telemetry: 'ADMISSION_DB: SECURED | DB_TRANSACTIONS: 100%',
     },
     {
-      volume: 'VOL. 07',
+      volume: 'VOL. 08',
       category: 'HR INFRASTRUCTURE // BACKEND',
       name: 'Employee Management System',
       abstract: 'Automated HR management application streamlining employee data, attendance, and performance tracking to ensure accurate and transparent operations.',
@@ -118,7 +129,7 @@ export const ProjectsSection: React.FC = () => {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 relative items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-5 relative items-stretch">
           {projects.map((project, idx) => (
             <ProjectCard
               key={project.volume}
@@ -168,61 +179,39 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, totalCards })
         }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        className="w-full h-full min-h-[680px] lg:min-h-[740px] rounded-[30px] md:rounded-[40px] border border-white/10 bg-[#030305] p-6 md:p-10 flex flex-col justify-between shadow-[0_-15px_40px_rgba(0,0,0,0.8)] relative group overflow-hidden glass-card transition-colors duration-500 hover:border-quantumCyan/20 pointer-events-auto"
+        className="w-full h-full min-h-[420px] lg:min-h-[460px] rounded-[26px] md:rounded-[32px] border border-white/10 bg-[#030305] p-4 md:p-5 flex flex-col justify-between shadow-[0_-15px_40px_rgba(0,0,0,0.8)] relative group overflow-hidden glass-card transition-colors duration-500 hover:border-quantumCyan/20 pointer-events-auto"
       >
         {/* Research Paper Styled Header */}
-        <div className="flex justify-between items-start border-b border-white/10 pb-4 md:pb-6">
+        <div className="flex items-start border-b border-white/10 pb-2.5 md:pb-3">
           <div className="flex flex-col gap-1.5">
-            <div className="font-mono text-xs text-quantumCyan tracking-wider uppercase font-bold flex items-center gap-2">
+            <div className="font-mono text-[9px] md:text-[10px] text-quantumCyan tracking-wider uppercase font-bold flex items-center gap-2">
               <span>{project.volume}</span>
               <span className="w-1.5 h-1.5 rounded-full bg-white/20" />
               <span>{project.category}</span>
             </div>
 
-            <h3 className="font-extrabold uppercase tracking-tight text-xl md:text-3xl lg:text-4xl text-white mt-1">
+            <h3 className="font-extrabold uppercase tracking-tight text-lg md:text-xl lg:text-2xl text-white mt-1">
               {project.name}
             </h3>
           </div>
-
-          {/* Research volume publication format label */}
-          <div className="font-mono text-[9px] text-[#E2E8F0]/30 hidden sm:flex flex-col items-end text-right">
-            <span>CLASSIFICATION: STABLE</span>
-            <span>PUBLISHED: MAY_2026</span>
-          </div>
         </div>
 
-        {/* Middle Area: Research Abstract & Tags Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 my-4 md:my-6 items-center">
-          {/* Abstract Description (Col Span 2) */}
-          <div className="md:col-span-2 flex flex-col gap-3">
-            <span className="font-mono text-[9px] text-quantumCyan/70 uppercase tracking-widest font-bold">
-              [ RESEARCH_ABSTRACT ]
-            </span>
-            <p className="text-[#E2E8F0]/70 font-light text-xs md:text-sm leading-relaxed max-w-xl">
-              {project.abstract}
-            </p>
-          </div>
-
-          {/* Technology Tags (Col Span 1) */}
-          <div className="flex flex-col gap-2.5">
-            <span className="font-mono text-[9px] text-purple-400/80 uppercase tracking-widest font-bold">
-              [ STACK_REGISTRY ]
-            </span>
-            <div className="flex flex-wrap gap-1.5">
-              {project.tech.map((pill) => (
-                <span
-                  key={pill}
-                  className="px-2.5 py-1 rounded-md border border-white/5 text-[9px] md:text-[10px] font-mono text-[#E2E8F0]/80 bg-white/5 uppercase"
-                >
-                  {pill}
-                </span>
-              ))}
-            </div>
+        {/* Middle Area: Technology Tags */}
+        <div className="flex flex-col gap-2.5 my-3 md:my-4">
+          <span className="font-mono text-[9px] text-purple-400/80 uppercase tracking-widest font-bold">
+            [ STACK_REGISTRY ]
+          </span>
+          <div className="flex flex-wrap gap-1.5">
+            {project.tech.map((pill) => (
+              <span key={pill} className="px-2 py-1 rounded-md border border-white/5 text-[7px] md:text-[8px] font-mono text-[#E2E8F0]/80 bg-white/5 uppercase">
+                {pill}
+              </span>
+            ))}
           </div>
         </div>
 
         {/* Bottom Section: Borderless Screen Image showcasing Zoom Hover */}
-        <div className="flex-grow relative overflow-hidden rounded-2xl bg-zinc-950/80 border border-white/5 group-hover:border-quantumCyan/10">
+        <div className="flex-grow relative overflow-hidden rounded-2xl bg-zinc-950/80 border border-white/5 group-hover:border-quantumCyan/10 min-h-[200px] md:min-h-[230px]">
           <motion.img
             src={project.image}
             alt={`${project.name} Interface Dashboard`}
@@ -234,7 +223,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, totalCards })
 
           {/* Subtle bottom telemetry overlay lines inside visual */}
           <div className="absolute bottom-4 left-6 right-6 flex justify-between items-center z-10 pointer-events-none select-none">
-            <span className="font-mono text-[9px] text-quantumCyan/80 tracking-widest uppercase font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+            <span className="font-mono text-[8px] md:text-[9px] text-quantumCyan/80 tracking-widest uppercase font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
               {project.telemetry}
             </span>
             <span className="font-mono text-[8px] text-white/30 hidden sm:inline uppercase">
@@ -252,29 +241,40 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, totalCards })
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
-                className="absolute inset-0 z-20 flex items-center justify-center gap-4 bg-black/72 backdrop-blur-sm pointer-events-auto px-4"
+                className="absolute inset-0 z-20 flex flex-col items-center justify-center gap-4 bg-black/72 backdrop-blur-sm pointer-events-auto px-4 text-center"
               >
-                <a
-                  href={project.liveLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-5 py-3 rounded-full border border-quantumCyan bg-quantumCyan text-[#030305] text-xs uppercase tracking-widest font-bold shadow-[0_0_24px_rgba(0,240,255,0.28)] hover:bg-white hover:border-white transition-all duration-300 select-none"
-                >
-                  <Globe size={13} />
-                  <span>LIVE_DEMO</span>
-                  <ArrowUpRight size={12} className="shrink-0" />
-                </a>
+                <div className="flex flex-wrap items-center justify-center gap-3">
+                  <a
+                    href={project.liveLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-5 py-3 rounded-full border border-quantumCyan bg-quantumCyan text-[#030305] text-xs uppercase tracking-widest font-bold shadow-[0_0_24px_rgba(0,240,255,0.28)] hover:bg-white hover:border-white transition-all duration-300 select-none"
+                  >
+                    <Globe size={13} />
+                    <span>LIVE_DEMO</span>
+                    <ArrowUpRight size={12} className="shrink-0" />
+                  </a>
 
-                <a
-                  href={project.githubLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-5 py-3 rounded-full border border-white/35 bg-black/70 text-[#E2E8F0] text-xs uppercase tracking-widest font-bold shadow-[0_10px_30px_rgba(0,0,0,0.45)] hover:bg-white/15 hover:border-white/70 transition-all duration-300 select-none"
-                >
-                  <Code size={13} />
-                  <span>REPOSITORY</span>
-                  <ArrowUpRight size={12} className="shrink-0" />
-                </a>
+                  <a
+                    href={project.githubLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-5 py-3 rounded-full border border-white/35 bg-black/70 text-[#E2E8F0] text-xs uppercase tracking-widest font-bold shadow-[0_10px_30px_rgba(0,0,0,0.45)] hover:bg-white/15 hover:border-white/70 transition-all duration-300 select-none"
+                  >
+                    <Code size={13} />
+                    <span>REPOSITORY</span>
+                    <ArrowUpRight size={12} className="shrink-0" />
+                  </a>
+                </div>
+
+                <div className="max-w-lg rounded-2xl border border-white/10 bg-black/45 px-4 py-3 text-left backdrop-blur-sm">
+                  <span className="mb-2 block font-mono text-[9px] uppercase tracking-widest text-quantumCyan/80 font-bold">
+                    [ RESEARCH_ABSTRACT ]
+                  </span>
+                  <p className="text-[#E2E8F0] text-xs md:text-sm leading-relaxed">
+                    {project.abstract}
+                  </p>
+                </div>
               </motion.div>
             )}
           </AnimatePresence>
