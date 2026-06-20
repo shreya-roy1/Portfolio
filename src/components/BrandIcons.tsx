@@ -78,3 +78,40 @@ export const LeetcodeIcon: React.FC<IconProps> = ({ size = 24, className = '', .
     <path d="M12 2.5a.5.5 0 0 1 .354.146l9 9a.5.5 0 0 1 0 .708l-3.5 3.5a.5.5 0 0 1-.708 0l-1.146-1.147a.5.5 0 0 1 0-.708l1.646-1.646a.5.5 0 0 0 0-.708l-6-6a.5.5 0 0 0-.708 0l-7.5 7.5a.5.5 0 0 0 0 .708l1.146 1.147a.5.5 0 0 0 .708 0l2.646-2.646a.5.5 0 0 1 .708 0l1.146 1.147a.5.5 0 0 1 0 .708l-4.5 4.5a.5.5 0 0 1-.708 0l-5.5-5.5a.5.5 0 0 1 0-.708l9-9a.5.5 0 0 1 .354-.146z" />
   </svg>
 );
+
+export const InstagramIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
+    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+  </svg>
+);
+
+export const GmailIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+    <polyline points="22,6 12,13 2,6"></polyline>
+  </svg>
+);

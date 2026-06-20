@@ -2,8 +2,7 @@ import React from 'react';
 import { Download } from 'lucide-react';
 import { FadeIn } from '../components/FadeIn';
 import { GhostActionButton } from '../components/GhostActionButton';
-import { GithubIcon, LinkedinIcon, LeetcodeIcon } from '../components/BrandIcons';
-
+import { GithubIcon, LinkedinIcon, LeetcodeIcon, InstagramIcon, GmailIcon } from '../components/BrandIcons';
 interface FooterSectionProps {
   onResumeClick?: () => void;
 }
@@ -45,41 +44,58 @@ export const FooterSection: React.FC<FooterSectionProps> = ({ onResumeClick }) =
           direction="up"
           distance={25}
           delay={0.15}
-          className="w-full max-w-2xl"
+          className="w-full max-w-5xl"
         >
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
             <GhostActionButton
               href="https://www.linkedin.com/in/shreya-roy1818/"
               icon={LinkedinIcon as any}
-              className="w-full !py-4.5 text-base border-white/10 hover:border-quantumCyan font-semibold hover:text-quantumCyan transition-all duration-300"
+              className="w-full min-w-0 justify-start gap-3 !px-8 !py-3.5 text-base border-white/10 hover:border-quantumCyan font-semibold hover:text-quantumCyan transition-all duration-300"
             >
               LinkedIn
-            </GhostActionButton>
+              </GhostActionButton>
 
             <GhostActionButton
               href="https://github.com/shreya-roy1"
               icon={GithubIcon as any}
-              className="w-full !py-4.5 text-base border-white/10 hover:border-quantumCyan font-semibold hover:text-quantumCyan transition-all duration-300"
+              className="w-full min-w-0 justify-start gap-3 !px-8 !py-3.5 text-base border-white/10 hover:border-orange-500 font-semibold hover:text-orange-500 transition-all duration-300"
             >
               GitHub
-            </GhostActionButton>
-
-            <GhostActionButton
-              href="https://leetcode.com/u/ShreyaRoyy/"
-              icon={LeetcodeIcon as any}
-              className="w-full !py-4.5 text-base border-white/10 hover:border-[#8A2BE2] font-semibold hover:text-[#8A2BE2] transition-all duration-300"
-            >
-              LeetCode
             </GhostActionButton>
 
             <GhostActionButton
               href="#resume-preview"
               icon={Download}
               onClick={onResumeClick}
-              className="w-full !py-4.5 text-base border-white/10 hover:border-quantumCyan font-semibold bg-white/5 hover:text-quantumCyan transition-all duration-300"
+              className="w-full min-w-0 justify-start gap-3 !px-8 !py-3.5 text-base border-white/10 hover:border-emerald-500 font-semibold bg-white/5 hover:text-emerald-500 transition-all duration-300"
             >
               See CV
             </GhostActionButton>
+
+            <GhostActionButton
+              href="mailto:shreya.roy1818@gmail.com"
+              icon={GmailIcon as any}
+              className="w-full min-w-0 justify-start gap-3 !px-8 !py-3.5 text-base border-white/10 hover:border-red-500 font-semibold hover:text-red-500 transition-all duration-300"
+            >
+              Gmail
+            </GhostActionButton>
+
+          <GhostActionButton
+              href="https://www.instagram.com/shreya_ea"
+              icon={InstagramIcon as any}
+              className="w-full min-w-0 justify-start gap-3 !px-8 !py-3.5 text-base border-white/10 hover:border-pink-500 font-semibold hover:text-pink-500 transition-all duration-300"
+            >
+              Instagram
+            </GhostActionButton>
+
+            <GhostActionButton
+              href="https://leetcode.com/u/ShreyaRoyy/"
+              icon={LeetcodeIcon as any}
+              className="w-full min-w-0 justify-start gap-3 !px-8 !py-3.5 text-base border-white/10 hover:border-[#8A2BE2] font-semibold hover:text-[#8A2BE2] transition-all duration-300"
+            >
+              LeetCode
+            </GhostActionButton>
+
           </div>
         </FadeIn>
       </div>
