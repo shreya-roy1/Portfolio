@@ -54,20 +54,19 @@ Welcome to my personal developer portfolio—an immersive, high-fidelity dark-sp
 *   **Code**: [Phishing Sentinel Repository](https://github.com/shreya-roy1/Phishing-Sentinel)
 *   **Demo**: [Sentinel Suite Chrome Web Store](https://chromewebstore.google.com/detail/sentinel-suite-phishing-g/ankdnkinpgjkncgjphbjdpjaallligim?utm_source=github-repo)
 
-### 4. SafeRide Shield 🌧️
-*   **Domain**: Parametric Income Insurance // Fintech
-*   **Stack**: React.js, Node.js, Firebase, OpenWeather API
-*   **Features**: Automates weather-curfew payments for gig-workers based on live weather data triggers, enabling instant claims-free payouts.
-*   **Code**: [SafeRide Shield Repository](https://github.com/shreya-roy1/SafeRide-Shield)
-*   **Demo**: [SafeRide Shield Live](https://saferide-shield.vercel.app/)
-
-### 5. OmniShield 🛡️
+### 4. OmniShield 🛡️
 *   **Domain**: FinTech // Fraud Intelligence
 *   **Stack**: Next.js, Go, Apache Kafka, D3.js, WebSockets
 *   **Features**: Ingests multi-feed transaction telemetry to detect anomalies, maps cash-routing via interactive 2D graphs, and auto-compiles compliance reports within a brutalist, high-density dark-themed simulation canvas.
 *   **Code**: [OmniShield Repository](https://github.com/shreya-roy1/OmniShield)
 *   **Demo**: [OmniShield Live](https://github.com/shreya-roy1/OmniShield)
 
+### 5. SafeRide Shield 🌧️
+*   **Domain**: Parametric Income Insurance // Fintech
+*   **Stack**: React.js, Node.js, Firebase, OpenWeather API
+*   **Features**: Automates weather-curfew payments for gig-workers based on live weather data triggers, enabling instant claims-free payouts.
+*   **Code**: [SafeRide Shield Repository](https://github.com/shreya-roy1/SafeRide-Shield)
+*   **Demo**: [SafeRide Shield Live](https://saferide-shield.vercel.app/)
 
 ### 6. ArmorClaw 🛡️🐾
 *   **Domain**: Multi-Agent Financials // SecOps
