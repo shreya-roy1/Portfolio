@@ -21,7 +21,7 @@ export const ProjectsSection: React.FC = () => {
       volume: 'VOL. 01',
       category: 'ACOUSTIC INTELLIGENCE // ML',
       name: 'EchoMind',
-      abstract: 'AI-powered acoustic surveillance platform for smart cities. It analyses ambient audio in real-time to detect hidden threats like gunshots, breaking glass, and human screams. With explainable AI and automated Twilio SMS alerts, it ensures rapid, transparent security responses.',
+      abstract: 'AI-powered acoustic surveillance platform that secures smart cities through real-time audio threat detection and automated emergency alerts.',
       tech: ['React.js', 'FastAPI', 'Python', 'Twilio', 'WebSockets'],
       image: '/assets/project_echomind.png',
       liveLink: 'https://echomind-multi-agent-audio-intelligence.onrender.com/',
@@ -32,7 +32,7 @@ export const ProjectsSection: React.FC = () => {
       volume: 'VOL. 02',
       category: 'SECURE CRYPTOGRAPHY // WEB',
       name: 'Cipher Model',
-      abstract: 'AI-powered web platform that provides smart encryption, secure data handling, and modern cybersecurity solutions through an interactive and user-friendly interface.',
+      abstract: 'AI-powered cybersecurity platform delivering smart encryption and secure data handling through an intuitive web interface.',
       tech: ['React.js', 'JavaScript', 'Node.js', 'Web Cryptography'],
       image: '/assets/project_cipher.png',
       liveLink: 'https://cipher-model.vercel.app/',
@@ -43,7 +43,7 @@ export const ProjectsSection: React.FC = () => {
       volume: 'VOL. 03',
       category: 'BROWSER SECURITY // GO',
       name: 'Phishing Sentinel',
-      abstract: 'An AI-powered browser security system that detects phishing websites in real time using a machine learning model and a high-performance backend built with Go. The project focuses on real-time security by analyzing a webpage\'s DOM to detect and block phishing sites instantly.',
+      abstract: 'AI-powered browser security system delivering instant phishing protection through real-time DOM analysis and a high-performance Go backend.',
       tech: ['Go', 'Chrome Extension', 'Machine Learning', 'DOM Parser'],
       image: '/assets/project_phishing.png',
       liveLink: 'https://chromewebstore.google.com/detail/sentinel-suite-phishing-g/ankdnkinpgjkncgjphbjdpjaallligim?utm_source=github-repo',
@@ -54,7 +54,7 @@ export const ProjectsSection: React.FC = () => {
       volume: 'VOL. 04',
       category: 'PARAMETRIC INSURANCE // FINTECH',
       name: 'SafeRide Shield',
-      abstract: 'An AI-driven parametric income insurance platform specifically designed for gig workers. Unlike traditional insurance, it utilizes external data triggers to automate payouts. A key feature is the "Rain Curfew", which uses zero-touch automation to compensate riders when adverse weather conditions prevent them from working, ensuring financial stability without a manual claims process.',
+      abstract: 'AI-driven parametric insurance platform securing gig worker income through zero-touch, automated payouts triggered by real-time weather and external data.',
       tech: ['React.js', 'Node.js', 'Firebase', 'OpenWeather API'],
       image: '/assets/project_saferide.png',
       liveLink: 'https://saferide-shield.vercel.app/',
@@ -65,7 +65,7 @@ export const ProjectsSection: React.FC = () => {
       volume: 'VOL. 05',
       category: 'MULTI-AGENT FINANCIALS // CYBER',
       name: 'ArmorClaw',
-      abstract: 'A Delegation-Safe Multi-Agent Financial Trading System. It addresses security in automated trading by implementing an Intent Enforcement Layer. This layer acts as a gatekeeper, validating every move made by trading agents against a pre-defined security policy. By doing so, it proactively blocks unauthorized or malicious transactions, ensuring that delegated agents operate strictly within their intended bounds.',
+      abstract: 'Delegation-safe multi-agent financial trading system securing automated transactions through an Intent Enforcement Layer that proactively blocks unauthorized or malicious actions.',
       tech: ['Python', 'FastAPI', 'Multi-Agent Framework', 'Security Policy'],
       image: '/assets/project_ai.png',
       liveLink: 'https://armorclaw-safe-financial-trading-sy.vercel.app/',
@@ -76,7 +76,7 @@ export const ProjectsSection: React.FC = () => {
       volume: 'VOL. 06',
       category: 'ACADEMIC PORTALS // DATABASE',
       name: 'Student Admission Portal',
-      abstract: 'Web-based management system that streamlines the student admission process with features like registration, application tracking, and secure data management through a simple and responsive interface.',
+      abstract: 'Web-based management system streamlining student admissions with secure registration and application tracking through a responsive interface.',
       tech: ['HTML5', 'CSS3', 'JavaScript', 'MySQL', 'Node.js'],
       image: '/assets/project_saas.png',
       liveLink: 'https://student-admission-portal-59mf.onrender.com/',
@@ -87,7 +87,7 @@ export const ProjectsSection: React.FC = () => {
       volume: 'VOL. 07',
       category: 'HR INFRASTRUCTURE // BACKEND',
       name: 'Employee Management System',
-      abstract: 'A software application designed to manage employee data, attendance, roles, and performance efficiently. It automates manual HR tasks, ensuring accuracy, transparency, and quick access to information.',
+      abstract: 'Automated HR management application streamlining employee data, attendance, and performance tracking to ensure accurate and transparent operations.',
       tech: ['Java', 'SQL', 'JDBC', 'HTML5', 'Tailwind CSS'],
       image: '/assets/project_cloud.png',
       liveLink: 'https://github.com/shreya-roy1/Employee_Management_system_Website',
@@ -117,8 +117,8 @@ export const ProjectsSection: React.FC = () => {
           </FadeIn>
         </div>
 
-        {/* Stacking Slide Deck Cards Container */}
-        <div className="flex flex-col gap-24 md:gap-32 relative">
+        {/* Projects Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 relative items-stretch">
           {projects.map((project, idx) => (
             <ProjectCard
               key={project.volume}
@@ -159,17 +159,16 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, totalCards })
   return (
     <div
       ref={cardRef}
-      className="h-[80vh] md:h-[85vh] flex items-start justify-center sticky top-24 md:top-32 w-full"
+      className="w-full h-full"
     >
       <motion.div
         style={{
           scale,
-          top: `calc(96px + ${index * 28}px)`, // Stacking offset
           willChange: 'transform, scale',
         }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        className="w-full h-[95%] rounded-[30px] md:rounded-[40px] border border-white/10 bg-[#030305] p-6 md:p-10 flex flex-col justify-between shadow-[0_-15px_40px_rgba(0,0,0,0.8)] relative group overflow-hidden glass-card transition-colors duration-500 hover:border-quantumCyan/20 pointer-events-auto"
+        className="w-full h-full min-h-[680px] lg:min-h-[740px] rounded-[30px] md:rounded-[40px] border border-white/10 bg-[#030305] p-6 md:p-10 flex flex-col justify-between shadow-[0_-15px_40px_rgba(0,0,0,0.8)] relative group overflow-hidden glass-card transition-colors duration-500 hover:border-quantumCyan/20 pointer-events-auto"
       >
         {/* Research Paper Styled Header */}
         <div className="flex justify-between items-start border-b border-white/10 pb-4 md:pb-6">
@@ -253,13 +252,13 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, totalCards })
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
-                className="absolute inset-0 z-20 flex items-center justify-center gap-4 bg-black/40 backdrop-blur-xs pointer-events-auto"
+                className="absolute inset-0 z-20 flex items-center justify-center gap-4 bg-black/72 backdrop-blur-sm pointer-events-auto px-4"
               >
                 <a
                   href={project.liveLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 px-4.5 py-2.5 rounded-full border border-quantumCyan bg-quantumCyan/10 text-quantumCyan text-xs uppercase tracking-widest font-bold shadow-[0_0_15px_rgba(0,240,255,0.25)] hover:bg-quantumCyan/20 transition-all duration-300 select-none"
+                  className="inline-flex items-center gap-1.5 px-5 py-3 rounded-full border border-quantumCyan bg-quantumCyan text-[#030305] text-xs uppercase tracking-widest font-bold shadow-[0_0_24px_rgba(0,240,255,0.28)] hover:bg-white hover:border-white transition-all duration-300 select-none"
                 >
                   <Globe size={13} />
                   <span>LIVE_DEMO</span>
@@ -270,7 +269,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, totalCards })
                   href={project.githubLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 px-4.5 py-2.5 rounded-full border border-[#E2E8F0]/30 bg-transparent text-[#E2E8F0] text-xs uppercase tracking-widest font-bold hover:bg-white/10 hover:border-white/50 transition-all duration-300 select-none"
+                  className="inline-flex items-center gap-1.5 px-5 py-3 rounded-full border border-white/35 bg-black/70 text-[#E2E8F0] text-xs uppercase tracking-widest font-bold shadow-[0_10px_30px_rgba(0,0,0,0.45)] hover:bg-white/15 hover:border-white/70 transition-all duration-300 select-none"
                 >
                   <Code size={13} />
                   <span>REPOSITORY</span>
