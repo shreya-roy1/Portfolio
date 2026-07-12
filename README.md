@@ -33,56 +33,62 @@ Welcome to my personal developer portfolio—an immersive, high-fidelity dark-sp
 
 ## 🚀 Scientific Compilations (Real-World Projects)
 
-### 1. EchoMind 🧠
+### 1. AirDrawer 🖐️
+*   **Domain**: AI Spatial Computing // Computer Vision
+*   **Stack**: React.js, TypeScript, Webcam API, Matrix Transformations, Computer Vision
+*   **Features**: A high-performance AI spatial canvas that maps webcam video into a low-latency virtual drawing space using kinematic coordinate tracking and real-time matrix transformations.
+
+
+### 2. EchoMind 🧠
 *   **Domain**: ML // Acoustic Intelligence
 *   **Stack**: React.js, FastAPI, Python, Twilio SMS API, WebSockets
 *   **Features**: Real-time ambient audio scanner for smart city surveillance detecting gunshots, breaking glass, and screeches. Sends automated text dispatches via Twilio.
 *   **Code**: [EchoMind - Multi-Agent Audio Intelligence](https://github.com/shreya-roy1/EchoMind---Multi-Agent-Audio-Intelligence)
 *   **Demo**: [EchoMind Live Portal](https://echomind-multi-agent-audio-intelligence.onrender.com/)
 
-### 2. Cipher Model 🔐
+### 3. Cipher Model 🔐
 *   **Domain**: Secure Cryptography // Cybersecurity Web
 *   **Stack**: React.js, JavaScript, Node.js, Web Cryptography API (AES-GCM 256)
 *   **Features**: Interactive playground offering high-grade secure local data encryption, key generation, and cryptographic analysis tools.
 *   **Code**: [Cipher Model Repository](https://github.com/shreya-roy1/cipher-model)
 *   **Demo**: [Cipher Model Live](https://cipher-model.vercel.app/)
 
-### 3. Phishing Sentinel 🛡️
+### 4. Phishing Sentinel 🛡️
 *   **Domain**: Browser Security // Go Backend
 *   **Stack**: Go, Chrome Extension API, Machine Learning, DOM Parser
 *   **Features**: AI-driven browser security suite analyzing DOM nodes in real time to instantly intercept, block, and flag phishing URLs.
 *   **Code**: [Phishing Sentinel Repository](https://github.com/shreya-roy1/Phishing-Sentinel)
 *   **Demo**: [Sentinel Suite Chrome Web Store](https://chromewebstore.google.com/detail/sentinel-suite-phishing-g/ankdnkinpgjkncgjphbjdpjaallligim?utm_source=github-repo)
 
-### 4. OmniShield 🛡️
+### 5. OmniShield 🛡️
 *   **Domain**: FinTech // Fraud Intelligence
 *   **Stack**: Next.js, Go, Apache Kafka, D3.js, WebSockets
 *   **Features**: Ingests multi-feed transaction telemetry to detect anomalies, maps cash-routing via interactive 2D graphs, and auto-compiles compliance reports within a brutalist, high-density dark-themed simulation canvas.
 *   **Code**: [OmniShield Repository](https://github.com/shreya-roy1/OmniShield)
 *   **Demo**: [OmniShield Live](https://github.com/shreya-roy1/OmniShield)
 
-### 5. SafeRide Shield 🌧️
+### 6. SafeRide Shield 🌧️
 *   **Domain**: Parametric Income Insurance // Fintech
 *   **Stack**: React.js, Node.js, Firebase, OpenWeather API
 *   **Features**: Automates weather-curfew payments for gig-workers based on live weather data triggers, enabling instant claims-free payouts.
 *   **Code**: [SafeRide Shield Repository](https://github.com/shreya-roy1/SafeRide-Shield)
 *   **Demo**: [SafeRide Shield Live](https://saferide-shield.vercel.app/)
 
-### 6. ArmorClaw 🛡️🐾
+### 7. ArmorClaw 🛡️🐾
 *   **Domain**: Multi-Agent Financials // SecOps
 *   **Stack**: Python, FastAPI, Multi-Agent Framework, Intent Policy Engines
 *   **Features**: A delegation-safe financial trading portal protecting autonomous trading scripts via an Intent Enforcement Layer to block anomalous transactions.
 *   **Code**: [ArmorClaw Repository](https://github.com/shreya-roy1/Delegation-Safe-Financial-Trading-System)
 *   **Demo**: [ArmorClaw Live](https://armorclaw-safe-financial-trading-sy.vercel.app/)
 
-### 7. Student Admission Portal 🎓
+### 8. Student Admission Portal 🎓
 *   **Domain**: Academic Databases
 *   **Stack**: HTML5, CSS3, JavaScript, MySQL, Node.js
 *   **Features**: Fully responsive enrollment portal for seamless application review, intake logging, and administrative queries.
 *   **Code**: [Student Admission Portal Repository](https://github.com/shreya-roy1/student-admission-portal)
 *   **Demo**: [Admission Portal Live](https://student-admission-portal-59mf.onrender.com/)
 
-### 8. Employee Management System 👥
+### 9. Employee Management System 👥
 *   **Domain**: HR Infrastructure // Backend Services
 *   **Stack**: Java, SQL, JDBC, HTML5, Tailwind CSS
 *   **Features**: Lightweight, secure enterprise-level administrative panel managing employee records, real-time logging, and role assignments.
