@@ -1,24 +1,24 @@
 # 🌌 Shreya Roy
 
-Welcome to my personal developer portfolio—an immersive, high-fidelity dark-space interactive experience built using **React**, **TypeScript**, and **Framer Motion**. Designed as a high-tech terminal, it showcases real-world engineering, active cybersecurity deployments, and machine learning research with sleek cybernetic accents.
+Welcome to my personal portfolio—a cinematic, dark-mode web experience built with **React**, **TypeScript**, and **Framer Motion**. The site presents a curated body of work spanning cybersecurity, machine learning, fintech, and full-stack product engineering through a polished, high-tech interface.
 
 📊 **Live Experience**: https://shreya-roy.vercel.app/ <br>
-📂 **Resume/CV**: Available directly in the portal!
+📂 **Resume/CV**: Available directly in the portfolio.
 
 ---
 
-## ✨ Design Highlights & Core Features
+## ✨ Portfolio Highlights
 
-*   **Dark-Space Aesthetic**: A premium, responsive interface featuring deep cosmic black backgrounds (`#030305`), custom glassmorphic panels, and glowing neon highlights (Quantum Cyan & Deep Purple).
-*   **Sticky Card-Deck Slide Effect**: An elegant projects viewport where research cards stack upon scroll and naturally slide out with custom exit scales.
-*   **Interactive Sliding Navigation Header**: Fixed floating glass capsule header showcasing responsive icons, automatic scroll spying (`IntersectionObserver`), and a sliding glass hover/active capsule highlight.
-*   **Decoded Technical Matrix**: A structured 6-row capability bento-grid showcasing full-stack proficiency, database expertise, and cloud orchestration.
-*   **Constellation Particle System**: A canvas-based interactive particle background that reacts fluidly to mouse movement.
-*   **Micro-Toast Telemetry Dispatches**: Animated cybernetic system notifications on modal transitions and CV downloads.
+*   **Immersive Dark-Space Interface**: A premium, responsive layout built around deep cosmic black surfaces (`#030305`), glassmorphic panels, and neon-accented visual hierarchy.
+*   **Dynamic Project Deck**: A scroll-driven project viewport where research cards stack, shift, and transition with measured motion to create a layered presentation.
+*   **Interactive Navigation System**: A floating glass header with responsive iconography, section-aware scroll highlighting, and smooth hover-state transitions.
+*   **Capability Matrix**: A structured six-sector technical matrix that communicates full-stack fluency, data systems knowledge, and deployment experience.
+*   **Reactive Particle Background**: A canvas-driven constellation effect that responds to cursor movement to enhance the visual atmosphere.
+*   **Telemetry-Style Feedback**: Lightweight animated notifications that reinforce transitions and action feedback across the portfolio experience.
 
 ---
 
-## 🛠️ Tech Capability Matrix
+## 🛠️ Technology Capability Matrix
 
 | Sector | Core Stack |
 | :--- | :--- |
@@ -31,7 +31,7 @@ Welcome to my personal developer portfolio—an immersive, high-fidelity dark-sp
 
 ---
 
-## 🚀 Scientific Compilations (Real-World Projects)
+## 🚀 Selected Projects & Research
 
 ### 1. AirDrawer 🖐️
 *   **Domain**: AI Spatial Computing // Computer Vision
@@ -98,10 +98,10 @@ Welcome to my personal developer portfolio—an immersive, high-fidelity dark-sp
 
 ---
 
-## 🚀 Architectural Design Tokens
+## 🚀 Visual System & Design Tokens
 *   **Primary Background**: `#030305` (Deep Cosmic Void)
 *   **Footer Base**: `#0C0C0C` (Carbon Black)
 *   **Accent Lights**: `#00F0FF` (Quantum Cyan) & `#8A2BE2` (Deep Purple)
-*   **Fonts**: Inter (Sans, UI element alignment), IBM Plex Mono (Scientific metadata readouts)
+*   **Fonts**: Inter (UI typography), IBM Plex Mono (system and metadata styling)
 <br>
-Designed with 💻 and ☕ by **Shreya Roy**.
+Built with a focus on engineering clarity, visual polish, and product storytelling.
