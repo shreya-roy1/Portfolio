@@ -19,6 +19,17 @@ export const ProjectsSection: React.FC = () => {
   const projects: Project[] = [
     {
       volume: 'VOL. 01',
+      category: 'AI SPATIAL COMPUTING // VISION',
+      name: 'AirDrawer',
+      abstract: 'A high-performance AI spatial canvas. Application of kinematic coordinate mapping and real-time matrix transformations to translate webcam video feeds into a low-latency virtual drawing canvas.',
+      tech: ['Computer Vision', 'React.js', 'TypeScript', 'Webcam API', 'Matrix Transformations'],
+      image: '/assets/project_ai.png',
+      liveLink: 'https://air-drawerr.vercel.app/',
+      githubLink: 'https://github.com/shreya-roy1/Air-Drawer',
+      telemetry: 'KINEMATIC_MAP: ENGAGED | CANVAS_LATENCY: LOW',
+    },
+    {
+      volume: 'VOL. 02',
       category: 'ACOUSTIC INTELLIGENCE // ML',
       name: 'EchoMind',
       abstract: 'AI-powered acoustic surveillance platform that secures smart cities through real-time audio threat detection and automated emergency alerts.',
@@ -29,7 +40,7 @@ export const ProjectsSection: React.FC = () => {
       telemetry: 'DETECT_LATENCY: 12ms | THREAT_SCAN: ENGAGED',
     },
     {
-      volume: 'VOL. 02',
+      volume: 'VOL. 03',
       category: 'SECURE CRYPTOGRAPHY // WEB',
       name: 'Cipher Model',
       abstract: 'AI-powered cybersecurity platform delivering smart encryption and secure data handling through an intuitive web interface.',
@@ -40,7 +51,7 @@ export const ProjectsSection: React.FC = () => {
       telemetry: 'KEY_STRENGTH: AES-GCM 256 | ENCRYPT: STABLE',
     },
     {
-      volume: 'VOL. 03',
+      volume: 'VOL. 04',
       category: 'BROWSER SECURITY // GO',
       name: 'Phishing Sentinel',
       abstract: 'AI-powered browser security system delivering instant phishing protection through real-time DOM analysis and a high-performance Go backend.',
@@ -51,7 +62,7 @@ export const ProjectsSection: React.FC = () => {
       telemetry: 'DOM_SCAN: ACTIVE | GO_SERVICE: ACTIVE',
     },
     {
-      volume: 'VOL. 04',
+      volume: 'VOL. 05',
       category: 'BANKING FRAUD INTELLIGENCE // SIMULATION',
       name: 'OmniShield',
       abstract: 'Military-grade banking fraud intelligence platform detecting anomalies and mapping cash-routing through real-time telemetry and automated compliance reporting.',
@@ -62,7 +73,7 @@ export const ProjectsSection: React.FC = () => {
       telemetry: 'FRAUD_TRACE: LIVE | COMPLIANCE_MATRIX: ARMED',
     },
     {
-      volume: 'VOL. 05',
+      volume: 'VOL. 06',
       category: 'PARAMETRIC INSURANCE // FINTECH',
       name: 'SafeRide Shield',
       abstract: 'AI-driven parametric insurance platform securing gig worker income through zero-touch, automated payouts triggered by real-time weather and external data.',
@@ -73,7 +84,7 @@ export const ProjectsSection: React.FC = () => {
       telemetry: 'RAIN_CURFEW: ENGAGED | ZERO_TOUCH_PAYOUT: STABLE',
     },
     {
-      volume: 'VOL. 06',
+      volume: 'VOL. 07',
       category: 'MULTI-AGENT FINANCIALS // CYBER',
       name: 'ArmorClaw',
       abstract: 'Delegation-safe multi-agent financial trading system securing automated transactions through an Intent Enforcement Layer that proactively blocks unauthorized or malicious actions.',
@@ -84,7 +95,7 @@ export const ProjectsSection: React.FC = () => {
       telemetry: 'INTENT_GATEKEEPER: ENFORCED | ANOMALY_FILTER: ACTIVE',
     },
     {
-      volume: 'VOL. 07',
+      volume: 'VOL. 08',
       category: 'ACADEMIC PORTALS // DATABASE',
       name: 'Student Admission Portal',
       abstract: 'Web-based management system streamlining student admissions with secure registration and application tracking through a responsive interface.',
@@ -95,7 +106,7 @@ export const ProjectsSection: React.FC = () => {
       telemetry: 'ADMISSION_DB: SECURED | DB_TRANSACTIONS: 100%',
     },
     {
-      volume: 'VOL. 08',
+      volume: 'VOL. 09',
       category: 'HR INFRASTRUCTURE // BACKEND',
       name: 'Employee Management System',
       abstract: 'Automated HR management application streamlining employee data, attendance, and performance tracking to ensure accurate and transparent operations.',
