@@ -37,7 +37,8 @@ Welcome to my personal developer portfolio—an immersive, high-fidelity dark-sp
 *   **Domain**: AI Spatial Computing // Computer Vision
 *   **Stack**: React.js, TypeScript, Webcam API, Matrix Transformations, Computer Vision
 *   **Features**: A high-performance AI spatial canvas that maps webcam video into a low-latency virtual drawing space using kinematic coordinate tracking and real-time matrix transformations.
-
+*   **Code**: [AirDrawer Repository](https://github.com/shreya-roy1/Air-Drawer)
+*   **Demo**: [AirDrawer Live](https://air-drawerr.vercel.app/)
 
 ### 2. EchoMind 🧠
 *   **Domain**: ML // Acoustic Intelligence
