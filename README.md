@@ -103,5 +103,7 @@ Welcome to my personal portfolio—a cinematic, dark-mode web experience built w
 *   **Footer Base**: `#0C0C0C` (Carbon Black)
 *   **Accent Lights**: `#00F0FF` (Quantum Cyan) & `#8A2BE2` (Deep Purple)
 *   **Fonts**: Inter (UI typography), IBM Plex Mono (system and metadata styling)
-<br>
-Built with a focus on engineering clarity, visual polish, and product storytelling.
+  
+---
+
+Built with a focus on engineering clarity, visual polish, and product storytelling by ***Shreya Roy***.
