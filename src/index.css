@@ -33,6 +33,12 @@
   ::-webkit-scrollbar-thumb:hover {
     background: rgba(0, 240, 255, 0.3);
   }
+
+  button:focus-visible,
+  a:focus-visible {
+    outline: 2px solid rgba(56, 189, 248, 0.9);
+    outline-offset: 3px;
+  }
 }
 
 /* Metallic silver heading text gradient */
