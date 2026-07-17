@@ -7,7 +7,9 @@ interface Project {
   volume: string;
   category: string;
   name: string;
-  abstract: string;
+  problem: string;
+  architecture: string;
+  impact: string;
   tech: string[];
   image: string;
   liveLink: string;
@@ -21,7 +23,9 @@ export const ProjectsSection: React.FC = () => {
       volume: 'VOL. 01',
       category: 'AI SPATIAL COMPUTING // VISION',
       name: 'AirDrawer',
-      abstract: 'A high-performance AI spatial canvas. Application of kinematic coordinate mapping and real-time matrix transformations to translate webcam video feeds into a low-latency virtual drawing canvas.',
+      problem: 'Most gesture-driven drawing tools lag when translating webcam motion into vector output, creating a disconnect for live users.',
+      architecture: 'React and TypeScript power a webcam input pipeline that maps live frames into a coordinate model and renders state updates on a low-latency canvas.',
+      impact: 'Delivered a stabilized virtual drawing interface that preserves motion fidelity and keeps end-to-end response under perceived real time.',
       tech: ['Computer Vision', 'React.js', 'TypeScript', 'Webcam API', 'Matrix Transformations'],
       image: '/assets/project_ai.png',
       liveLink: 'https://air-drawerr.vercel.app/',
@@ -32,7 +36,9 @@ export const ProjectsSection: React.FC = () => {
       volume: 'VOL. 02',
       category: 'ACOUSTIC INTELLIGENCE // ML',
       name: 'EchoMind',
-      abstract: 'AI-powered acoustic surveillance platform that secures smart cities through real-time audio threat detection and automated emergency alerts.',
+      problem: 'Smart city audio monitoring systems struggle to turn raw microphone data into actionable alerts fast enough for incident response.',
+      architecture: 'A React dashboard fetches threat events from a FastAPI backend while WebSockets stream live acoustic telemetry and Twilio sends incident SMS dispatches.',
+      impact: 'Improved alert speed for audio anomalies and made threat state visible to operators without manual listening.',
       tech: ['React.js', 'FastAPI', 'Python', 'Twilio', 'WebSockets'],
       image: '/assets/project_echomind.png',
       liveLink: 'https://echomind-multi-agent-audio-intelligence.onrender.com/',
@@ -43,7 +49,9 @@ export const ProjectsSection: React.FC = () => {
       volume: 'VOL. 03',
       category: 'SECURE CRYPTOGRAPHY // WEB',
       name: 'Cipher Model',
-      abstract: 'AI-powered cybersecurity platform delivering smart encryption and secure data handling through an intuitive web interface.',
+      problem: 'Secure encryption workflows are often fragmented, forcing users to trust third-party key management or weak local scripts.',
+      architecture: 'A browser-based React client uses the Web Crypto API to manage AES-GCM 256 encryption locally without exposing secret material to servers.',
+      impact: 'Enabled private encryption analysis entirely in the browser, reducing reliance on external key services.',
       tech: ['React.js', 'JavaScript', 'Node.js', 'Web Cryptography'],
       image: '/assets/project_cipher.png',
       liveLink: 'https://cipher-model.vercel.app/',
@@ -54,7 +62,9 @@ export const ProjectsSection: React.FC = () => {
       volume: 'VOL. 04',
       category: 'BROWSER SECURITY // GO',
       name: 'Phishing Sentinel',
-      abstract: 'AI-powered browser security system delivering instant phishing protection through real-time DOM analysis and a high-performance Go backend.',
+      problem: 'Phishing pages can bypass client-side protections until after a user enters credentials, leaving browser sessions vulnerable.',
+      architecture: 'A Chrome extension analyzes DOM events and page structure in real time, while a Go service evaluates suspicious patterns before navigation completes.',
+      impact: 'Stopped phishing attempts preemptively and raised browser-side detection fidelity for unsafe URLs.',
       tech: ['Go', 'Chrome Extension', 'Machine Learning', 'DOM Parser'],
       image: '/assets/project_phishing.png',
       liveLink: 'https://chromewebstore.google.com/detail/sentinel-suite-phishing-g/ankdnkinpgjkncgjphbjdpjaallligim?utm_source=github-repo',
@@ -65,7 +75,9 @@ export const ProjectsSection: React.FC = () => {
       volume: 'VOL. 05',
       category: 'BANKING FRAUD INTELLIGENCE // SIMULATION',
       name: 'OmniShield',
-      abstract: 'Military-grade banking fraud intelligence platform detecting anomalies and mapping cash-routing through real-time telemetry and automated compliance reporting.',
+      problem: 'Transaction anomaly signals are often buried in raw data, making it difficult for fraud teams to spot complex attack patterns.',
+      architecture: 'A React visualization layer presents transaction telemetry while backend simulations generate risk scores and compliance events.',
+      impact: 'Improved visibility into fraud workflows and made anomaly chains easier to investigate.',
       tech: ['React.js', 'Data Visualization', 'Fraud Detection', 'Compliance'],
       image: '/assets/project_crypto.png',
       liveLink: 'https://github.com/shreya-roy1/OmniShield',
@@ -76,7 +88,9 @@ export const ProjectsSection: React.FC = () => {
       volume: 'VOL. 06',
       category: 'PARAMETRIC INSURANCE // FINTECH',
       name: 'SafeRide Shield',
-      abstract: 'AI-driven parametric insurance platform securing gig worker income through zero-touch, automated payouts triggered by real-time weather and external data.',
+      problem: 'Gig-worker pay protections require event-driven payouts that are hard to track manually across weather and policy data.',
+      architecture: 'Firebase stores policy state while OpenWeather triggers event updates and payout signals in the dashboard.',
+      impact: 'Enabled automatic weather-triggered payment visibility and reduced manual claims review time.',
       tech: ['React.js', 'Node.js', 'Firebase', 'OpenWeather API'],
       image: '/assets/project_saferide.png',
       liveLink: 'https://saferide-shield.vercel.app/',
@@ -87,7 +101,9 @@ export const ProjectsSection: React.FC = () => {
       volume: 'VOL. 07',
       category: 'MULTI-AGENT FINANCIALS // CYBER',
       name: 'ArmorClaw',
-      abstract: 'Delegation-safe multi-agent financial trading system securing automated transactions through an Intent Enforcement Layer that proactively blocks unauthorized or malicious actions.',
+      problem: 'Multi-agent trading systems can execute risky operations without a centralized policy enforcement layer.',
+      architecture: 'A delegation-safe enforcement service validates agent intents before transaction execution in the trading workflow.',
+      impact: 'Reduced unauthorized trade attempts and improved the safety of autonomous operations.',
       tech: ['Python', 'FastAPI', 'Multi-Agent Framework', 'Security Policy'],
       image: '/assets/project_ai.png',
       liveLink: 'https://armorclaw-safe-financial-trading-sy.vercel.app/',
@@ -98,7 +114,9 @@ export const ProjectsSection: React.FC = () => {
       volume: 'VOL. 08',
       category: 'ACADEMIC PORTALS // DATABASE',
       name: 'Student Admission Portal',
-      abstract: 'Web-based management system streamlining student admissions with secure registration and application tracking through a responsive interface.',
+      problem: 'Admissions teams need a centralized application workflow instead of tracking forms in multiple systems.',
+      architecture: 'A responsive front end connects to a Node.js + MySQL backend for secure registration, application state, and administrative review.',
+      impact: 'Centralized applicant tracking and reduced the time needed to review enrollment submissions.',
       tech: ['HTML5', 'CSS3', 'JavaScript', 'MySQL', 'Node.js'],
       image: '/assets/project_saas.png',
       liveLink: 'https://student-admission-portal-59mf.onrender.com/',
@@ -109,7 +127,9 @@ export const ProjectsSection: React.FC = () => {
       volume: 'VOL. 09',
       category: 'HR INFRASTRUCTURE // BACKEND',
       name: 'Employee Management System',
-      abstract: 'Automated HR management application streamlining employee data, attendance, and performance tracking to ensure accurate and transparent operations.',
+      problem: 'HR data is often scattered across spreadsheets, making attendance and performance tracking inconsistent.',
+      architecture: 'A Java backend and SQL datastore power a secure admin interface for employee records, attendance logging, and performance views.',
+      impact: 'Reduced manual HR effort and centralized employee operations in a single dashboard.',
       tech: ['Java', 'SQL', 'JDBC', 'HTML5', 'Tailwind CSS'],
       image: '/assets/project_cloud.png',
       liveLink: 'https://github.com/shreya-roy1/Employee_Management_system_Website',
@@ -149,7 +169,6 @@ export const ProjectsSection: React.FC = () => {
               totalCards={projects.length}
             />
           ))}
-          {/* Spacing cushion block inside parent container to let the last sticky card scroll away before the footer enters */}
           <div className="h-[25vh] sm:h-[30vh] pointer-events-none" />
         </div>
 
@@ -180,7 +199,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, totalCards })
   const translateY = useTransform(scrollYProgress, [0, 1], [0, index * 18]);
 
   return (
-    <div
+    <article
       ref={cardRef}
       className="w-full h-full"
     >
@@ -281,12 +300,32 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, totalCards })
                 </div>
 
                 <div className="max-w-lg rounded-2xl border border-white/10 bg-black/45 px-4 py-3 text-left backdrop-blur-sm">
-                  <span className="mb-2 block font-mono text-[9px] uppercase tracking-widest text-quantumCyan/80 font-bold">
-                    [ RESEARCH_ABSTRACT ]
-                  </span>
-                  <p className="text-[#E2E8F0] text-xs md:text-sm leading-relaxed">
-                    {project.abstract}
-                  </p>
+                  <div className="grid gap-3">
+                    <div>
+                      <span className="mb-1 block font-mono text-[9px] uppercase tracking-widest text-quantumCyan/80 font-bold">
+                        Problem
+                      </span>
+                      <p className="text-[#E2E8F0] text-[11px] md:text-[13px] leading-relaxed">
+                        {project.problem}
+                      </p>
+                    </div>
+                    <div>
+                      <span className="mb-1 block font-mono text-[9px] uppercase tracking-widest text-quantumCyan/80 font-bold">
+                        Architecture
+                      </span>
+                      <p className="text-[#E2E8F0] text-[11px] md:text-[13px] leading-relaxed">
+                        {project.architecture}
+                      </p>
+                    </div>
+                    <div>
+                      <span className="mb-1 block font-mono text-[9px] uppercase tracking-widest text-quantumCyan/80 font-bold">
+                        Impact
+                      </span>
+                      <p className="text-[#E2E8F0] text-[11px] md:text-[13px] leading-relaxed">
+                        {project.impact}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </motion.div>
             )}
@@ -294,7 +333,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, totalCards })
         </div>
 
       </motion.div>
-    </div>
+    </article>
   );
 };
 
