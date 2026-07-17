@@ -86,7 +86,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             {/* Uppercase telemetry description */}
             <FadeIn direction="left" distance={25} delay={0.35}>
               <p className="text-[#E2E8F0]/85 font-light uppercase tracking-wide leading-snug text-xs sm:text-sm md:text-base max-w-[550px]">
-                AN ASPIRING FULL STACK DEVELOPER DRIVEN BY BUILDING SCALABLE, ROBUST, AND USER-CENTRIC APPLICATIONS
+                FULL-STACK ENGINEER architecting scalable, real-time web applications and high-throughput data dashboards with TypeScript, React, and Node.js.
               </p>
             </FadeIn>
 
@@ -94,25 +94,25 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             <FadeIn direction="left" distance={25} delay={0.45}>
               <div className="flex flex-wrap items-center gap-4 mt-2">
                 <Magnet padding={80} strength={3}>
-                  <button
-                    onClick={onProjectsClick}
-                    className="px-6 py-3 rounded-full font-bold uppercase tracking-widest text-[10px] text-white bg-spaceBlack border border-quantumCyan/40 shadow-[0_0_20px_rgba(0,240,255,0.15)] transition-all duration-300 hover:border-quantumCyan hover:shadow-[0_0_25px_rgba(0,240,255,0.3)] relative group overflow-hidden"
+                  <a
+                    href="/Resume.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center px-6 py-3 rounded-full font-bold uppercase tracking-widest text-[10px] text-[#030305] bg-quantumCyan border border-transparent shadow-[0_0_20px_rgba(0,240,255,0.15)] transition-all duration-300 hover:bg-[#8a2be2]"
                   >
-                    <span className="absolute inset-0 bg-quantumCyan/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-                    <span className="relative z-10 flex items-center gap-2">
-                      View Research & Projects
-                      <ArrowRight size={13} />
-                    </span>
-                  </button>
+                    View Resume
+                  </a>
                 </Magnet>
 
                 <Magnet padding={80} strength={3}>
-                  <button
-                    onClick={onContactClick}
-                    className="px-6 py-3 rounded-full font-bold uppercase tracking-widest text-[10px] text-[#E2E8F0] border border-[#E2E8F0]/20 bg-transparent transition-all duration-300 hover:bg-[#E2E8F0]/5 hover:border-white/50"
+                  <a
+                    href="https://github.com/shreya-roy1"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center px-6 py-3 rounded-full font-bold uppercase tracking-widest text-[10px] text-[#E2E8F0] border border-[#E2E8F0]/20 bg-transparent transition-all duration-300 hover:bg-[#E2E8F0]/10 hover:border-white/50"
                   >
-                    Connect
-                  </button>
+                    GitHub
+                  </a>
                 </Magnet>
               </div>
             </FadeIn>
