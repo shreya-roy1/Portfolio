@@ -8,11 +8,13 @@ import { InteractiveParticles } from '../components/InteractiveParticles';
 interface HeroSectionProps {
   onProjectsClick?: () => void;
   onContactClick?: () => void;
+  onResumeClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
 }
 
 export const HeroSection: React.FC<HeroSectionProps> = ({
   onProjectsClick,
   onContactClick,
+  onResumeClick,
 }) => {
   return (
     <section className="h-screen flex flex-col justify-between overflow-hidden relative bg-[#030305] text-[#E2E8F0]">
@@ -95,9 +97,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               <div className="flex flex-wrap items-center gap-4 mt-2">
                 <Magnet padding={80} strength={3}>
                   <a
-                    href="/Resume.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href="#resume-preview"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onResumeClick?.(e);
+                    }}
                     className="inline-flex items-center justify-center px-6 py-3 rounded-full font-bold uppercase tracking-widest text-[10px] text-[#030305] bg-quantumCyan border border-transparent shadow-[0_0_20px_rgba(0,240,255,0.15)] transition-all duration-300 hover:bg-[#8a2be2]"
                   >
                     View Resume
