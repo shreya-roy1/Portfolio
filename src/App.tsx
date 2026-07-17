@@ -97,7 +97,7 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="main-wrapper relative select-none bg-[#030305] text-[#E2E8F0]">
+    <main className="main-wrapper relative select-none bg-[#030305] text-[#E2E8F0]">
       
       {/* GLOBAL STICKY HEADER NAV */}
       <header className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 md:px-12 py-4 bg-[#030305]/65 backdrop-blur-lg border-b border-white/5 font-mono select-none">
@@ -383,7 +383,7 @@ export const App: React.FC = () => {
         )}
       </AnimatePresence>
 
-    </div>
+    </main>
   );
 };
 
