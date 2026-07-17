@@ -172,6 +172,7 @@ export const App: React.FC = () => {
         <HeroSection 
           onProjectsClick={scrollToProjects} 
           onContactClick={() => setIsContactOpen(true)} 
+          onResumeClick={handleResumePreview}
         />
       </div>
 
