@@ -114,7 +114,7 @@ export const ProjectsSection: React.FC = () => {
       volume: 'VOL. 08',
       category: 'ACADEMIC PORTALS // DATABASE',
       name: 'Student Admission Portal',
-      problem: 'Admissions workflows are scattered across systems.',
+      problem: 'Admissions workflows are scattered.',
       architecture: 'Responsive UI connects to Node.js + MySQL for tracking.',
       impact: 'Centralized applicant status and cut review time.',
       tech: ['HTML5', 'CSS3', 'JavaScript', 'MySQL', 'Node.js'],
