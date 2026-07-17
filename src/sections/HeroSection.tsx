@@ -1,19 +1,14 @@
 import React from 'react';
-import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Magnet } from '../components/Magnet';
 import { FadeIn } from '../components/FadeIn';
 import { InteractiveParticles } from '../components/InteractiveParticles';
 
 interface HeroSectionProps {
-  onProjectsClick?: () => void;
-  onContactClick?: () => void;
   onResumeClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
 }
 
 export const HeroSection: React.FC<HeroSectionProps> = ({
-  onProjectsClick,
-  onContactClick,
   onResumeClick,
 }) => {
   return (

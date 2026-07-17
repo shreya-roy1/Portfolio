@@ -170,8 +170,6 @@ export const App: React.FC = () => {
       {/* 1. Hero Section (Antigravity Research Lab) */}
       <div id="home">
         <HeroSection 
-          onProjectsClick={scrollToProjects} 
-          onContactClick={() => setIsContactOpen(true)} 
           onResumeClick={handleResumePreview}
         />
       </div>
