@@ -18,12 +18,12 @@ export const AboutSection: React.FC = () => {
         {/* Section Header */}
         <div className="flex flex-col gap-3">
           <FadeIn direction="up" distance={20} delay={0}>
-            <span className="font-mono text-xs text-quantumCyan uppercase tracking-[0.25em] font-bold">
-              01 // THE SYSTEM ABSTRACT
+            <span className="font-semibold text-sm text-indigo-400 uppercase tracking-wider">
+              About Me
             </span>
           </FadeIn>
           <FadeIn direction="up" distance={30} delay={0.1}>
-            <h2 className="silver-heading font-black uppercase tracking-tight text-[2.5rem] sm:text-[4rem] md:text-[5rem] leading-none">
+            <h2 className="font-bold text-4xl sm:text-5xl md:text-6xl tracking-tight text-white">
               Overview
             </h2>
           </FadeIn>
@@ -53,30 +53,30 @@ export const AboutSection: React.FC = () => {
             {/* Three Borderless Telemetry Counters */}
             <div className="grid grid-cols-3 gap-4 md:gap-6 border-t border-white/10 pt-8 md:pt-10">
               <div className="flex flex-col select-none">
-                <span className="font-mono text-[9px] text-[#E2E8F0]/40 uppercase tracking-widest font-bold mb-1">
-                  01_ / YEARS_ACTIVE
+                <span className="text-xs text-slate-400 uppercase tracking-wider font-semibold mb-1">
+                  Years Active
                 </span>
-                <span className="text-xl sm:text-2xl md:text-3xl font-extrabold text-quantumCyan">
+                <span className="text-xl sm:text-2xl md:text-3xl font-bold text-indigo-400">
                   <TickingCounter target={4} suffix="+" />
                 </span>
               </div>
 
               {/* Counter 2: Hackathon Deploys */}
               <div className="flex flex-col select-none">
-                <span className="font-mono text-[9px] text-[#E2E8F0]/40 uppercase tracking-widest font-bold mb-1">
-                  02_ / HACKATHONS
+                <span className="text-xs text-slate-400 uppercase tracking-wider font-semibold mb-1">
+                  Hackathons
                 </span>
-                <span className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white">
+                <span className="text-xl sm:text-2xl md:text-3xl font-bold text-white">
                   <TickingCounter target={12} suffix="+" />
                 </span>
               </div>
 
               {/* Counter 3: Commits Logged */}
               <div className="flex flex-col select-none">
-                <span className="font-mono text-[9px] text-[#E2E8F0]/40 uppercase tracking-widest font-bold mb-1">
-                  03_ / COMMITS_LOGGED
+                <span className="text-xs text-slate-400 uppercase tracking-wider font-semibold mb-1">
+                  Commits Logged
                 </span>
-                <span className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white">
+                <span className="text-xl sm:text-2xl md:text-3xl font-bold text-white">
                   <TickingCounter target={1420} suffix="+" />
                 </span>
               </div>

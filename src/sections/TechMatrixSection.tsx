@@ -68,12 +68,12 @@ export const TechMatrixSection: React.FC = () => {
         <div className="flex flex-col gap-4 mb-16 md:mb-20">
           <div className="flex flex-col gap-3">
             <FadeIn direction="up" distance={20} delay={0}>
-              <span className="font-mono text-xs text-quantumCyan uppercase tracking-[0.25em] font-bold">
-                02 // CAPABILITY REGISTER
+              <span className="font-semibold text-sm text-indigo-400 uppercase tracking-wider">
+                My Skills
               </span>
             </FadeIn>
             <FadeIn direction="up" distance={30} delay={0.1}>
-              <h2 className="silver-heading font-black uppercase tracking-tight text-[2.5rem] sm:text-[4rem] md:text-[5rem] leading-none">
+              <h2 className="font-bold text-4xl sm:text-5xl md:text-6xl tracking-tight text-white">
                 Technical Stack
               </h2>
             </FadeIn>
@@ -81,8 +81,8 @@ export const TechMatrixSection: React.FC = () => {
           
           {/* Glowing Horizontal Rule Line */}
           <FadeIn direction="none" delay={0.25} className="w-full">
-            <div className="w-full h-[1px] bg-gradient-to-r from-quantumCyan/40 via-deepPurple/30 to-transparent relative mt-2">
-              <div className="absolute top-[-1.5px] left-0 w-2 h-2 rounded-full bg-quantumCyan shadow-[0_0_8px_#00F0FF] animate-pulse" />
+            <div className="w-full h-[1px] bg-gradient-to-r from-indigo-500/40 via-indigo-400/30 to-transparent relative mt-2">
+              <div className="absolute top-[-1.5px] left-0 w-2 h-2 rounded-full bg-indigo-400 shadow-[0_0_8px_rgba(99,102,241,0.8)] animate-pulse" />
             </div>
           </FadeIn>
         </div>
@@ -101,16 +101,13 @@ export const TechMatrixSection: React.FC = () => {
                 className="w-full"
               >
                 <div 
-                  className="w-full rounded-2xl md:rounded-3xl border border-white/8 bg-white/5 backdrop-blur-md p-6 md:p-8 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 shadow-[0_12px_32px_rgba(0,0,0,0.5)] transition-all duration-500 hover:border-quantumCyan/25 hover:bg-white/[0.04]"
+                  className="w-full rounded-2xl md:rounded-3xl border border-white/5 bg-[#0a0a0f] p-6 md:p-8 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 shadow-[0_8px_30px_rgba(0,0,0,0.5)] transition-all duration-500 hover:border-indigo-500/20"
                 >
                   {/* Left Column: Metadata & Descriptions */}
                   <div className="flex flex-col gap-2 max-w-md">
                     <div className="flex items-center gap-2.5">
-                      <span className="font-mono text-xs text-[#E2E8F0]/30 select-none">
-                        {category.index}_ /
-                      </span>
-                      <Icon size={16} className="text-quantumCyan shrink-0" />
-                      <h3 className="text-base md:text-xl font-bold uppercase tracking-tight text-white">
+                      <Icon size={20} className="text-indigo-400 shrink-0" />
+                      <h3 className="text-lg md:text-xl font-bold tracking-tight text-white">
                         {category.name}
                       </h3>
                     </div>
@@ -129,9 +126,9 @@ export const TechMatrixSection: React.FC = () => {
                         className="pointer-events-auto"
                       >
                         <span 
-                          className="font-mono text-xs md:text-sm text-[#E2E8F0]/90 border border-white/10 bg-white/5 px-3 py-1.5 rounded-xl select-none cursor-pointer hover:border-quantumCyan hover:text-quantumCyan transition-all duration-300 shadow-[0_4px_12px_rgba(0,0,0,0.3)] block"
+                          className="text-xs md:text-sm font-medium text-slate-300 border border-white/10 bg-white/5 px-3.5 py-1.5 rounded-full select-none cursor-pointer hover:border-indigo-400 hover:text-indigo-400 transition-colors block"
                         >
-                          [ {skill} ]
+                          {skill}
                         </span>
                       </Magnet>
                     ))}

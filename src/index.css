@@ -10,8 +10,7 @@
   }
 
   html, body, #root {
-    background-color: #030305;
-    color: #E2E8F0;
+    @apply bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-100;
     font-family: 'Inter', sans-serif;
     min-height: 100vh;
     scroll-behavior: smooth;
@@ -20,46 +19,27 @@
 
   /* Sleek, thin technical custom scrollbars */
   ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+    width: 8px;
+    height: 8px;
   }
   ::-webkit-scrollbar-track {
-    background: #030305;
+    @apply bg-slate-100 dark:bg-slate-900;
   }
   ::-webkit-scrollbar-thumb {
-    background: rgba(226, 232, 240, 0.1);
-    border-radius: 3px;
+    @apply bg-slate-300 dark:bg-slate-700 rounded-full;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: rgba(0, 240, 255, 0.3);
+    @apply bg-slate-400 dark:bg-slate-600;
   }
 
   button:focus-visible,
   a:focus-visible {
-    outline: 2px solid rgba(56, 189, 248, 0.9);
-    outline-offset: 3px;
+    @apply outline-none ring-2 ring-indigo-500 ring-offset-2 dark:ring-offset-slate-900;
   }
 }
 
-/* Metallic silver heading text gradient */
-.silver-heading {
-  background: linear-gradient(180deg, #FFFFFF 0%, #CBD5E1 40%, #94A3B8 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Glassmorphism class for Bento grids and command modules */
-.glass-card {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-}
-
 .main-wrapper {
-  background-color: #030305;
+  @apply bg-slate-50 dark:bg-slate-900;
   overflow-x: clip;
   width: 100%;
 }

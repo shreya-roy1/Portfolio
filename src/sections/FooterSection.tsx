@@ -19,7 +19,7 @@ export const FooterSection: React.FC<FooterSectionProps> = ({ onResumeClick }) =
       <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] sm:w-[450px] sm:h-[450px] rounded-full blur-[100px] opacity-10 pointer-events-none"
         style={{
-          background: 'radial-gradient(circle, #8A2BE2 0%, #00F0FF 50%, transparent 100%)',
+          background: 'radial-gradient(circle, #6366f1 0%, #4f46e5 50%, transparent 100%)',
         }}
       />
 
@@ -32,7 +32,7 @@ export const FooterSection: React.FC<FooterSectionProps> = ({ onResumeClick }) =
           className="text-center"
         >
           <h2
-            className="silver-heading font-black uppercase leading-none tracking-tight text-center"
+            className="font-bold tracking-tight text-center text-white"
             style={{ fontSize: 'clamp(2.5rem, 8vw, 110px)' }}
           >
             Let&apos;s connect.
@@ -50,7 +50,7 @@ export const FooterSection: React.FC<FooterSectionProps> = ({ onResumeClick }) =
             <GhostActionButton
               href="https://www.linkedin.com/in/shreya-roy1818/"
               icon={LinkedinIcon as any}
-              className="w-full min-w-0 justify-start gap-3 !px-8 !py-3.5 text-base border-white/10 hover:border-quantumCyan font-semibold hover:text-quantumCyan transition-all duration-300"
+              className="w-full min-w-0 justify-start gap-3 !px-8 !py-3.5 text-base border-white/10 hover:border-blue-500 font-semibold hover:text-blue-500 transition-all duration-300"
             >
               LinkedIn
               </GhostActionButton>
@@ -91,7 +91,7 @@ export const FooterSection: React.FC<FooterSectionProps> = ({ onResumeClick }) =
             <GhostActionButton
               href="https://leetcode.com/u/ShreyaRoyy/"
               icon={LeetcodeIcon as any}
-              className="w-full min-w-0 justify-start gap-3 !px-8 !py-3.5 text-base border-white/10 hover:border-[#8A2BE2] font-semibold hover:text-[#8A2BE2] transition-all duration-300"
+              className="w-full min-w-0 justify-start gap-3 !px-8 !py-3.5 text-base border-white/10 hover:border-amber-500 font-semibold hover:text-amber-500 transition-all duration-300"
             >
               LeetCode
             </GhostActionButton>
@@ -106,8 +106,8 @@ export const FooterSection: React.FC<FooterSectionProps> = ({ onResumeClick }) =
         delay={0.3}
         className="w-full text-center mt-16 sm:mt-24 relative z-10 select-none"
       >
-        <p className="font-mono text-[#E2E8F0]/30 text-[9px] md:text-[10px] uppercase tracking-widest font-light">
-          &copy; {currentYear} SHREYA ROY. All Rights Reserved. Designed with passion.
+        <p className="text-slate-500 text-xs tracking-wider font-light">
+          &copy; {currentYear} Shreya Roy. All Rights Reserved. Designed with passion.
         </p>
       </FadeIn>
     </footer>

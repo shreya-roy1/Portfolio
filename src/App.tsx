@@ -80,7 +80,7 @@ export const App: React.FC = () => {
       setIsSubmitting(false);
       setIsContactOpen(false);
       setFormData({ name: '', email: '', message: '' });
-      showToast('SEQUENCE INITIATED. Transmission dispatched successfully.');
+      showToast('Message sent successfully!');
     }, 1500);
   };
 
@@ -109,10 +109,10 @@ export const App: React.FC = () => {
             setActiveTab('home');
             scrollToHome();
           }}
-          className="text-xs md:text-sm tracking-[0.25em] text-[#E2E8F0] font-black uppercase hover:text-quantumCyan transition-all duration-300 relative group"
+          className="text-xs md:text-sm tracking-widest text-[#E2E8F0] font-black uppercase hover:text-indigo-400 transition-all duration-300 relative group"
         >
           <span>portfolio</span>
-          <span className="absolute bottom-[-4px] left-0 w-0 h-[1.5px] bg-quantumCyan group-hover:w-full transition-all duration-300" />
+          <span className="absolute bottom-[-4px] left-0 w-0 h-[1.5px] bg-indigo-400 group-hover:w-full transition-all duration-300" />
         </a>
 
         {/* Right: Headings in a floating glass pill container */}
@@ -137,7 +137,7 @@ export const App: React.FC = () => {
                 }}
                 className={`relative px-3 py-1.5 rounded-full text-[10px] md:text-xs font-semibold uppercase tracking-wider transition-all duration-300 z-10 flex items-center gap-1.5 group select-none ${
                   activeTab === item.id 
-                    ? 'text-quantumCyan font-bold' 
+                    ? 'text-indigo-400 font-bold' 
                     : 'text-[#E2E8F0]/50 hover:text-[#E2E8F0]'
                 }`}
               >
@@ -154,12 +154,12 @@ export const App: React.FC = () => {
                 {activeTab === item.id && (
                   <motion.div
                     layoutId="navActiveLine"
-                    className="absolute bottom-0 left-3 right-3 h-[2px] bg-gradient-to-r from-quantumCyan to-deepPurple -z-10"
+                    className="absolute bottom-0 left-3 right-3 h-[2px] bg-gradient-to-r from-indigo-400 to-indigo-600 -z-10"
                     transition={{ type: 'spring', stiffness: 350, damping: 25 }}
                   />
                 )}
 
-                <Icon size={12} className="shrink-0 text-quantumCyan/70 group-hover:text-quantumCyan transition-colors duration-300" />
+                <Icon size={12} className="shrink-0 text-indigo-400/70 group-hover:text-indigo-400 transition-colors duration-300" />
                 <span className="hidden sm:inline">{item.label}</span>
               </a>
             );
@@ -215,21 +215,21 @@ export const App: React.FC = () => {
             >
               <div className="flex items-center justify-between gap-3 border-b border-white/10 pb-3">
                 <div>
-                  <p className="text-[10px] uppercase tracking-[0.35em] text-quantumCyan">Resume Preview</p>
+                  <p className="text-[10px] uppercase tracking-widest text-indigo-400">Resume Preview</p>
                   <h3 className="text-sm md:text-base font-semibold text-[#E2E8F0]">Shreya Roy — CV</h3>
                 </div>
                 <div className="flex items-center gap-2">
                   <a
                     href="/Resume.pdf"
                     download="Shreya_Roy_Resume.pdf"
-                    className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-[11px] uppercase tracking-[0.2em] text-[#E2E8F0] hover:bg-white/10 hover:text-quantumCyan transition-colors"
+                    className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-[11px] uppercase tracking-widest text-[#E2E8F0] hover:bg-white/10 hover:text-indigo-400 transition-colors"
                   >
                     <Download size={14} />
                     Download
                   </a>
                   <button
                     onClick={() => setIsResumeOpen(false)}
-                    className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-[#E2E8F0] hover:bg-white/10 hover:text-quantumCyan transition-colors"
+                    className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-[#E2E8F0] hover:bg-white/10 hover:text-indigo-400 transition-colors"
                     aria-label="Close resume preview"
                   >
                     <X size={16} />
@@ -274,7 +274,7 @@ export const App: React.FC = () => {
               <div 
                 className="absolute top-0 right-0 w-[140px] h-[140px] rounded-full blur-[70px] opacity-15 pointer-events-none"
                 style={{
-                  background: 'radial-gradient(circle, #00F0FF 0%, transparent 100%)',
+                  background: 'radial-gradient(circle, #6366f1 0%, transparent 100%)',
                 }}
               />
 
@@ -289,67 +289,67 @@ export const App: React.FC = () => {
 
               {/* Title prompt */}
               <div className="flex items-center gap-2.5 mb-5 select-none">
-                <MessageSquare className="text-quantumCyan shrink-0" size={24} />
-                <h3 className="text-lg md:text-xl font-bold uppercase tracking-widest text-white">
-                  COMPILE MESSAGE
+                <MessageSquare className="text-indigo-400 shrink-0" size={24} />
+                <h3 className="text-lg md:text-xl font-bold tracking-wide text-white">
+                  Get in Touch
                 </h3>
               </div>
 
-              <p className="text-[#E2E8F0]/50 text-xs font-light mb-6 uppercase tracking-wider leading-relaxed">
-                Initiate a data connection. Submit details to sync pipelines.
+              <p className="text-slate-400 text-sm mb-6 leading-relaxed">
+                Have a question or want to work together? Send me a message below.
               </p>
 
               {/* Message Compiler Form */}
               <form onSubmit={handleContactSubmit} className="flex flex-col gap-4.5">
                 <div>
-                  <label className="block text-[10px] font-bold uppercase tracking-wider text-[#E2E8F0]/40 mb-1.5 select-none">
-                    [ sender_name ]
+                  <label className="block text-xs font-semibold text-slate-300 mb-1.5 select-none">
+                    Name
                   </label>
                   <input
                     type="text"
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder="e.g. USERNAME_ALPHA"
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/20 text-xs focus:outline-none focus:border-quantumCyan/80 transition-all font-medium"
+                    placeholder="John Doe"
+                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/20 text-sm focus:outline-none focus:border-indigo-500/80 transition-all font-medium"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-bold uppercase tracking-wider text-[#E2E8F0]/40 mb-1.5 select-none">
-                    [ sender_email ]
+                  <label className="block text-xs font-semibold text-slate-300 mb-1.5 select-none">
+                    Email
                   </label>
                   <input
                     type="email"
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    placeholder="e.g. user@domain.com"
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/20 text-xs focus:outline-none focus:border-quantumCyan/80 transition-all font-medium"
+                    placeholder="john@example.com"
+                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/20 text-sm focus:outline-none focus:border-indigo-500/80 transition-all font-medium"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-bold uppercase tracking-wider text-[#E2E8F0]/40 mb-1.5 select-none">
-                    [ message_payload ]
+                  <label className="block text-xs font-semibold text-slate-300 mb-1.5 select-none">
+                    Message
                   </label>
                   <textarea
                     rows={4}
                     required
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    placeholder="Type transmission payload details..."
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/20 text-xs focus:outline-none focus:border-quantumCyan/80 transition-all resize-none font-medium"
+                    placeholder="Write your message here..."
+                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/20 text-sm focus:outline-none focus:border-indigo-500/80 transition-all resize-none font-medium"
                   />
                 </div>
 
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="mt-4 flex items-center justify-center gap-2 w-full py-3.5 rounded-full font-bold uppercase tracking-widest text-white text-xs transition-all duration-300 active:scale-95 disabled:opacity-50 select-none shadow-[inset_0_2px_8px_rgba(255,255,255,0.15)] bg-gradient-to-r from-deepPurple to-quantumCyan hover:shadow-[0_0_20px_rgba(0,240,255,0.25)]"
+                  className="mt-4 flex items-center justify-center gap-2 w-full py-3.5 rounded-full font-bold uppercase tracking-wider text-white text-sm transition-all duration-300 active:scale-95 disabled:opacity-50 select-none shadow-[inset_0_2px_8px_rgba(255,255,255,0.15)] bg-gradient-to-r from-indigo-500 to-indigo-600 hover:shadow-[0_0_20px_rgba(99,102,241,0.25)]"
                 >
-                  {isSubmitting ? 'DISPATCHING...' : 'DISPATCH_TRANSMISSION'}
-                  <Send size={14} />
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                  <Send size={16} />
                 </button>
               </form>
 
@@ -374,9 +374,9 @@ export const App: React.FC = () => {
             initial={{ opacity: 0, y: 40, scale: 0.92 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.92 }}
-            className="fixed bottom-6 right-6 z-50 flex items-center gap-3 px-5 py-3.5 rounded-xl border border-quantumCyan/30 bg-[#030305]/95 text-white shadow-[0_15px_40px_rgba(0,0,0,0.85)] backdrop-blur-md text-[10px] sm:text-xs font-mono font-semibold uppercase tracking-widest select-none border-l-4 border-l-quantumCyan"
+            className="fixed bottom-6 right-6 z-50 flex items-center gap-3 px-5 py-3.5 rounded-xl border border-indigo-500/30 bg-[#030305]/95 text-white shadow-[0_15px_40px_rgba(0,0,0,0.85)] backdrop-blur-md text-sm font-semibold tracking-wide select-none border-l-4 border-l-indigo-500"
           >
-            <CheckCircle2 className="text-quantumCyan shrink-0" size={16} />
+            <CheckCircle2 className="text-indigo-400 shrink-0" size={18} />
             <span>{toastMessage}</span>
           </motion.div>
         )}

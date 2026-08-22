@@ -38,14 +38,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               viewBox="0 0 100 100" 
               className="w-[100px] md:w-[130px] h-auto filter drop-shadow-[0_0_15px_rgba(0,240,255,0.3)] select-none"
             >
-              <line x1="50" y1="15" x2="20" y2="45" stroke="#00F0FF" strokeWidth="1.5" strokeOpacity="0.8" />
-              <line x1="50" y1="15" x2="80" y2="45" stroke="#00F0FF" strokeWidth="1.5" strokeOpacity="0.8" />
-              <line x1="20" y1="45" x2="50" y2="75" stroke="#8A2BE2" strokeWidth="1.5" strokeOpacity="0.8" />
-              <line x1="80" y1="45" x2="50" y2="75" stroke="#8A2BE2" strokeWidth="1.5" strokeOpacity="0.8" />
-              <circle cx="50" cy="15" r="5" fill="#00F0FF" />
-              <circle cx="20" cy="45" r="6" fill="#8A2BE2" />
-              <circle cx="80" cy="45" r="6" fill="#00F0FF" />
-              <circle cx="50" cy="75" r="7" fill="#8A2BE2" />
+              <line x1="50" y1="15" x2="20" y2="45" stroke="#6366f1" strokeWidth="1.5" strokeOpacity="0.8" />
+              <line x1="50" y1="15" x2="80" y2="45" stroke="#6366f1" strokeWidth="1.5" strokeOpacity="0.8" />
+              <line x1="20" y1="45" x2="50" y2="75" stroke="#4f46e5" strokeWidth="1.5" strokeOpacity="0.8" />
+              <line x1="80" y1="45" x2="50" y2="75" stroke="#4f46e5" strokeWidth="1.5" strokeOpacity="0.8" />
+              <circle cx="50" cy="15" r="5" fill="#6366f1" />
+              <circle cx="20" cy="45" r="6" fill="#4f46e5" />
+              <circle cx="80" cy="45" r="6" fill="#6366f1" />
+              <circle cx="50" cy="75" r="7" fill="#4f46e5" />
             </svg>
           </Magnet>
         </motion.div>
@@ -60,10 +60,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           <div className="lg:col-span-5 flex flex-col justify-center text-left">
             <FadeIn direction="right" distance={30} delay={0.15}>
               <h1 
-                className="silver-heading font-black tracking-tight leading-none uppercase text-4xl sm:text-5xl md:text-6xl lg:text-[3.8rem] xl:text-[4.5rem]"
-                style={{
-                  filter: 'drop-shadow(0 2px 10px rgba(255, 255, 255, 0.08))',
-                }}
+                className="font-bold tracking-tight text-white leading-none text-4xl sm:text-5xl md:text-6xl lg:text-[3.8rem] xl:text-[4.5rem]"
               >
                 SHREYA ROY
               </h1>
@@ -75,15 +72,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             
             {/* Monospaced tag */}
             <FadeIn direction="left" distance={20} delay={0.25}>
-              <p className="font-mono text-quantumCyan text-xs sm:text-sm tracking-[0.2em] font-semibold uppercase">
-                &gt; FULL-STACK ENGINEER
+              <p className="text-indigo-400 text-sm tracking-wider font-semibold uppercase">
+                Full-Stack Engineer
               </p>
             </FadeIn>
 
             {/* Uppercase telemetry description */}
             <FadeIn direction="left" distance={25} delay={0.35}>
-              <p className="text-[#E2E8F0]/85 font-light uppercase tracking-wide leading-snug text-xs sm:text-sm md:text-base max-w-[550px]">
-                FULL-STACK ENGINEER architecting scalable, real-time web applications and high-throughput data dashboards with TypeScript, React, and Node.js.
+              <p className="text-slate-300 font-light leading-snug text-sm md:text-base max-w-[550px]">
+                Architecting scalable, real-time web applications and high-throughput data dashboards with TypeScript, React, and Node.js.
               </p>
             </FadeIn>
 
@@ -97,7 +94,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                       e.preventDefault();
                       onResumeClick?.(e);
                     }}
-                    className="inline-flex items-center justify-center px-6 py-3 rounded-full font-bold uppercase tracking-widest text-[10px] text-[#030305] bg-quantumCyan border border-transparent shadow-[0_0_20px_rgba(0,240,255,0.15)] transition-all duration-300 hover:bg-[#8a2be2]"
+                    className="inline-flex items-center justify-center px-6 py-3 rounded-full font-bold uppercase tracking-widest text-xs text-white bg-indigo-500 shadow-[0_4px_14px_0_rgba(99,102,241,0.39)] transition-all duration-300 hover:bg-indigo-600 hover:shadow-[0_6px_20px_rgba(99,102,241,0.23)]"
                   >
                     View Resume
                   </a>
