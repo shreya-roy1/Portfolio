@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, Code, Globe, Star, GitFork } from 'lucide-react';
+import { Code, Globe, Star, GitFork } from 'lucide-react';
 import { FadeIn } from '../components/FadeIn';
 
 interface GithubRepo {
