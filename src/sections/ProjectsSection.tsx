@@ -102,7 +102,42 @@ export const ProjectsSection: React.FC = () => {
       updated_at: new Date().toISOString(),
       language: 'TypeScript'
     },
-
+    {
+      id: 8,
+      name: 'student-admission-portal',
+      description: 'A comprehensive portal for managing student admissions.',
+      html_url: 'https://github.com/shreya-roy1/student-admission-portal',
+      homepage: null,
+      topics: ['web-development', 'react', 'nodejs'],
+      stargazers_count: 0,
+      forks_count: 0,
+      updated_at: new Date().toISOString(),
+      language: 'JavaScript'
+    },
+    {
+      id: 9,
+      name: 'lexitrace',
+      description: 'Lexical analysis and tracing tool.',
+      html_url: 'https://github.com/shreya-roy1/lexitrace',
+      homepage: null,
+      topics: ['compilers', 'analysis'],
+      stargazers_count: 0,
+      forks_count: 0,
+      updated_at: new Date().toISOString(),
+      language: 'Python'
+    },
+    {
+      id: 10,
+      name: 'websocket-kanban',
+      description: 'Real-time kanban board using websockets.',
+      html_url: 'https://github.com/shreya-roy1/websocket-kanban',
+      homepage: null,
+      topics: ['websocket', 'react', 'real-time'],
+      stargazers_count: 0,
+      forks_count: 0,
+      updated_at: new Date().toISOString(),
+      language: 'TypeScript'
+    }
   ];
 
   return (
