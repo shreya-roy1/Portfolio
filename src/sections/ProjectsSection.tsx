@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight, Code, Globe, Star, GitFork } from 'lucide-react';
 import { FadeIn } from '../components/FadeIn';
@@ -17,57 +17,93 @@ interface GithubRepo {
 }
 
 export const ProjectsSection: React.FC = () => {
-  const [projects, setProjects] = useState<GithubRepo[]>([]);
-  const [loading, setLoading] = useState(true);
+  const projects: GithubRepo[] = [
+    {
+      id: 1,
+      name: 'Air-Drawer',
+      description: 'An innovative application that allows users to draw in the air using hand gestures.',
+      html_url: 'https://github.com/shreya-roy1/Air-Drawer',
+      homepage: null,
+      topics: ['python', 'computer-vision', 'opencv', 'mediapipe'],
+      stargazers_count: 0,
+      forks_count: 0,
+      updated_at: new Date().toISOString(),
+      language: 'Python'
+    },
+    {
+      id: 2,
+      name: 'EchoMind',
+      description: 'A platform leveraging AI for conversational insights.',
+      html_url: 'https://github.com/shreya-roy1/EchoMind',
+      homepage: null,
+      topics: ['ai', 'nlp', 'react'],
+      stargazers_count: 0,
+      forks_count: 0,
+      updated_at: new Date().toISOString(),
+      language: 'TypeScript'
+    },
+    {
+      id: 3,
+      name: 'Phishing-Sentinel',
+      description: 'A cybersecurity tool to detect and prevent phishing attacks using machine learning.',
+      html_url: 'https://github.com/shreya-roy1/Phishing-Sentinel',
+      homepage: null,
+      topics: ['machine-learning', 'cybersecurity', 'python'],
+      stargazers_count: 0,
+      forks_count: 0,
+      updated_at: new Date().toISOString(),
+      language: 'Python'
+    },
+    {
+      id: 4,
+      name: 'cipher-model',
+      description: 'Advanced cryptography model for secure communications.',
+      html_url: 'https://github.com/shreya-roy1/cipher-model',
+      homepage: null,
+      topics: ['cryptography', 'security', 'python'],
+      stargazers_count: 0,
+      forks_count: 0,
+      updated_at: new Date().toISOString(),
+      language: 'Python'
+    },
+    {
+      id: 5,
+      name: 'OmniShield',
+      description: 'Comprehensive system protection suite.',
+      html_url: 'https://github.com/shreya-roy1/OmniShield',
+      homepage: null,
+      topics: ['security', 'shield'],
+      stargazers_count: 0,
+      forks_count: 0,
+      updated_at: new Date().toISOString(),
+      language: 'Python'
+    },
+    {
+      id: 6,
+      name: 'SafeRide-Shield',
+      description: 'IoT based safe ride system.',
+      html_url: 'https://github.com/shreya-roy1/SafeRide-Shield',
+      homepage: null,
+      topics: ['iot', 'hardware'],
+      stargazers_count: 0,
+      forks_count: 0,
+      updated_at: new Date().toISOString(),
+      language: 'C++'
+    },
+    {
+      id: 7,
+      name: 'ArmorClaw',
+      description: 'Advanced cybersecurity tool for threat detection, real-time analysis, and system defense.',
+      html_url: 'https://github.com/shreya-roy1/ArmorClaw',
+      homepage: null,
+      topics: ['cybersecurity', 'threat-detection'],
+      stargazers_count: 0,
+      forks_count: 0,
+      updated_at: new Date().toISOString(),
+      language: 'TypeScript'
+    },
 
-  useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        const response = await fetch('https://api.github.com/users/shreya-roy1/repos?sort=updated&per_page=100');
-        const data: GithubRepo[] = await response.json();
-        
-        // Define the list of projects to feature (including the new ones requested)
-        const featuredNames = [
-          'Air-Drawer', 
-          'EchoMind', 
-          'Phishing-Sentinel', 
-          'cipher-model', 
-          'OmniShield', 
-          'SafeRide-Shield', 
-          'ArmorClaw', 
-          'student-admission-portal',
-          'lexitrace',
-          'websocket-kanban'
-        ];
-
-        // Filter and sort by the order of featuredNames
-        const filtered = data
-          .filter(repo => featuredNames.includes(repo.name) || featuredNames.includes(repo.name.replace('---Multi-Agent-Audio-Intelligence', '')))
-          .map(repo => {
-            if (repo.name.toLowerCase() === 'armorclaw' || repo.name.toLowerCase() === 'amourclaw') {
-              return {
-                ...repo,
-                description: 'Advanced cybersecurity tool for threat detection, real-time analysis, and system defense. ' + (repo.description || '')
-              };
-            }
-            return repo;
-          })
-          .sort((a, b) => {
-            const indexA = featuredNames.findIndex(n => a.name.includes(n));
-            const indexB = featuredNames.findIndex(n => b.name.includes(n));
-            return indexA - indexB;
-          });
-
-        setProjects(filtered.length > 0 ? filtered : data.filter(repo => !repo.fork).slice(0, 8));
-      } catch (error) {
-        console.error('Error fetching github projects:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProjects();
-  }, []);
+  ];
 
   return (
     <section id="projects" className="bg-[#030305] text-[#E2E8F0] pt-24 pb-20 relative z-30 transition-colors duration-300">
@@ -87,17 +123,11 @@ export const ProjectsSection: React.FC = () => {
         </div>
 
         {/* Projects Grid */}
-        {loading ? (
-          <div className="flex justify-center py-20">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-500"></div>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {projects.map((project, idx) => (
-              <ProjectCard key={project.id} project={project} index={idx} />
-            ))}
-          </div>
-        )}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          {projects.map((project, idx) => (
+            <ProjectCard key={project.id} project={project} index={idx} />
+          ))}
+        </div>
       </div>
     </section>
   );
