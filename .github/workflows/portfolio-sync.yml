@@ -1,0 +1,27 @@
+name: Daily Portfolio Sync
+
+on:
+  schedule:
+    - cron: "0 0 * * *" # Every day at midnight UTC
+  workflow_dispatch: # Allow manual triggering
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm install axios @neondatabase/serverless dotenv
+
+      - name: Run Sync Script
+        run: node scripts/syncReposNeon.js
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL || vars.DATABASE_URL || vars.NEON_DATABASE_URL }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN || github.token }}
