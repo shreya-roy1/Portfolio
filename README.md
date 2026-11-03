@@ -2,7 +2,7 @@
 
 Welcome to my personal portfolio—a cinematic, dark-mode web experience built with **React**, **TypeScript**, and **Framer Motion**. The site presents a curated body of work spanning cybersecurity, machine learning, fintech, and full-stack product engineering through a polished, high-tech interface.
 
-📊 **Live Experience**: https://shreya-roy.vercel.app/ <br>
+📊 **Live Experience**: https://shreya-roy.is-a.dev/ <br>
 📂 **Resume/CV**: Available directly in the portfolio.
 
 ---
