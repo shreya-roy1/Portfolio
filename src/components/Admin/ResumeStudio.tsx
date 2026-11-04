@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Editor from '@monaco-editor/react';
 import { 
   Sparkles, 
@@ -44,6 +44,67 @@ export const ResumeStudio: React.FC<ResumeStudioProps> = ({ initialResumeId }) =
 
   // AI Modal
   const [showAiModal, setShowAiModal] = useState(false);
+
+  // Resizable panel dimensions
+  const [filePanelWidth, setFilePanelWidth] = useState<number>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('shreya_resume_file_panel_width');
+      return saved ? parseInt(saved, 10) : 230;
+    }
+    return 230;
+  });
+
+  const [editorSplitPercent, setEditorSplitPercent] = useState<number>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('shreya_resume_editor_split_percent');
+      return saved ? parseFloat(saved) : 50;
+    }
+    return 50;
+  });
+
+  const [isDraggingFile, setIsDraggingFile] = useState(false);
+  const [isDraggingEditor, setIsDraggingEditor] = useState(false);
+  const workspaceRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!isDraggingFile && !isDraggingEditor) return;
+      if (!workspaceRef.current) return;
+
+      const rect = workspaceRef.current.getBoundingClientRect();
+
+      if (isDraggingFile) {
+        const newWidth = Math.max(160, Math.min(480, e.clientX - rect.left));
+        setFilePanelWidth(newWidth);
+        localStorage.setItem('shreya_resume_file_panel_width', `${newWidth}`);
+      } else if (isDraggingEditor) {
+        const availableWidth = rect.width - filePanelWidth - 10;
+        const editorWidthPx = e.clientX - rect.left - filePanelWidth - 5;
+        const newPercent = Math.max(20, Math.min(80, (editorWidthPx / availableWidth) * 100));
+        setEditorSplitPercent(newPercent);
+        localStorage.setItem('shreya_resume_editor_split_percent', `${newPercent}`);
+      }
+    };
+
+    const handleMouseUp = () => {
+      setIsDraggingFile(false);
+      setIsDraggingEditor(false);
+    };
+
+    if (isDraggingFile || isDraggingEditor) {
+      window.addEventListener('mousemove', handleMouseMove);
+      window.addEventListener('mouseup', handleMouseUp);
+      document.body.style.cursor = 'col-resize';
+      document.body.style.userSelect = 'none';
+    }
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseup', handleMouseUp);
+      document.body.style.cursor = '';
+      document.body.style.userSelect = '';
+    };
+  }, [isDraggingFile, isDraggingEditor, filePanelWidth]);
 
   useEffect(() => {
     loadSavedResumes();
@@ -194,10 +255,10 @@ await axios.get(`/api/resumes/preview-pdf?id=${id}`, { responseType: 'blob' });
   };
 
   return (
-    <div className="flex flex-col h-[82vh] rounded-2xl bg-[#0a0a0f] border border-white/10 overflow-hidden shadow-2xl">
+    <div className="flex flex-col h-full rounded-2xl bg-[#0a0a0f] border border-white/10 overflow-hidden shadow-2xl">
       
       {/* Studio Header Toolbar */}
-      <div className="flex items-center justify-between px-5 py-3 border-b border-white/10 bg-[#030305] text-xs">
+      <div className="flex items-center justify-between px-5 py-3 border-b border-white/10 bg-[#030305] text-xs shrink-0">
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-white font-mono">
             <FileCode size={14} className="text-indigo-400" />
@@ -257,11 +318,22 @@ await axios.get(`/api/resumes/preview-pdf?id=${id}`, { responseType: 'blob' });
         </div>
       </div>
 
-      {/* 3-Panel Main Area */}
-      <div className="flex-1 flex overflow-hidden">
+      {/* 3-Panel Resizable Workspace */}
+      <div 
+        ref={workspaceRef}
+        className="flex-1 flex overflow-hidden relative select-none"
+        style={{ userSelect: isDraggingFile || isDraggingEditor ? 'none' : 'auto' }}
+      >
+        {/* Transparent overlay while dragging to keep mouse events captured over iframe */}
+        {(isDraggingFile || isDraggingEditor) && (
+          <div className="absolute inset-0 z-50 cursor-col-resize" />
+        )}
         
         {/* Panel 1: File Explorer */}
-        <div className="w-60 border-r border-white/10 bg-[#06060a] p-4 flex flex-col justify-between overflow-y-auto">
+        <div 
+          style={{ width: `${filePanelWidth}px` }}
+          className="shrink-0 border-r border-white/10 bg-[#06060a] p-4 flex flex-col justify-between overflow-y-auto"
+        >
           <div className="space-y-4">
             
             {/* Templates */}
@@ -337,8 +409,23 @@ await axios.get(`/api/resumes/preview-pdf?id=${id}`, { responseType: 'blob' });
           </div>
         </div>
 
+        {/* RESIZER 1: File Tree <-> Monaco Editor */}
+        <div
+          onMouseDown={(e) => {
+            e.preventDefault();
+            setIsDraggingFile(true);
+          }}
+          className={`w-1.5 shrink-0 cursor-col-resize transition-colors z-20 ${
+            isDraggingFile ? 'bg-indigo-500' : 'bg-white/5 hover:bg-indigo-500/50'
+          }`}
+          title="Drag to resize file sidebar"
+        />
+
         {/* Panel 2: Monaco Editor */}
-        <div className="flex-1 flex flex-col border-r border-white/10 bg-[#1e1e1e]">
+        <div 
+          style={{ flex: `0 0 calc(${editorSplitPercent}% - 6px)`, minWidth: '260px' }}
+          className="flex flex-col bg-[#1e1e1e] overflow-hidden"
+        >
           <Editor
             height="100%"
             language={activeFileKey === 'master-context' ? 'markdown' : 'latex'}
@@ -356,8 +443,20 @@ await axios.get(`/api/resumes/preview-pdf?id=${id}`, { responseType: 'blob' });
           />
         </div>
 
+        {/* RESIZER 2: Editor <-> PDF Preview */}
+        <div
+          onMouseDown={(e) => {
+            e.preventDefault();
+            setIsDraggingEditor(true);
+          }}
+          className={`w-1.5 shrink-0 cursor-col-resize transition-colors z-20 ${
+            isDraggingEditor ? 'bg-indigo-500' : 'bg-white/5 hover:bg-indigo-500/50'
+          }`}
+          title="Drag to resize code / preview panels"
+        />
+
         {/* Panel 3: Live PDF Preview */}
-        <div className="flex-1 flex flex-col bg-neutral-900">
+        <div className="flex-1 min-w-[280px] flex flex-col bg-neutral-900 overflow-hidden">
           {compilerError ? (
             <div className="p-6 bg-red-500/10 border-b border-red-500/20 text-red-400 space-y-2">
               <div className="flex items-center gap-2 font-semibold text-xs">

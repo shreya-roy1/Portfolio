@@ -8,7 +8,7 @@ import {
   Save, 
   ExternalLink, 
   RefreshCw, 
-  
+  GripVertical,
   Image as ImageIcon,
   CheckCircle2,
 } from 'lucide-react';
@@ -37,6 +37,8 @@ export const ProjectManagement: React.FC = () => {
   const [saveStatus, setSaveStatus] = useState<{ [key: string]: 'idle' | 'saving' | 'saved' }>({});
   const [orderSaving, setOrderSaving] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
+  const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
+  const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
 
   useEffect(() => {
     fetchProjects();
@@ -81,6 +83,57 @@ export const ProjectManagement: React.FC = () => {
     // Recalculate priority based on list index
     const reindexed = newProjects.map((p, idx) => ({ ...p, priority: idx }));
     setProjects(reindexed);
+  };
+
+  const handleDragStart = (e: React.DragEvent, index: number) => {
+    setDraggedIndex(index);
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/plain', `${index}`);
+  };
+
+  const handleDragOver = (e: React.DragEvent, index: number) => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+    if (dragOverIndex !== index) {
+      setDragOverIndex(index);
+    }
+  };
+
+  const handleDrop = async (e: React.DragEvent, dropIndex: number) => {
+    e.preventDefault();
+    if (draggedIndex === null || draggedIndex === dropIndex) {
+      setDraggedIndex(null);
+      setDragOverIndex(null);
+      return;
+    }
+
+    const reordered = [...projects];
+    const [movedItem] = reordered.splice(draggedIndex, 1);
+    reordered.splice(dropIndex, 0, movedItem);
+
+    const updated = reordered.map((item, idx) => ({ ...item, priority: idx }));
+    setProjects(updated);
+    setDraggedIndex(null);
+    setDragOverIndex(null);
+
+    // Auto-sync new sequence to backend
+    try {
+      const batchPayload = updated.map((p, idx) => ({
+        repo_name: p.repo_name,
+        display_title: p.display_title || p.repo_name,
+        priority: idx,
+      }));
+      await axios.post('/api/projects', batchPayload);
+      setMessage('Project order updated!');
+      setTimeout(() => setMessage(null), 2500);
+    } catch (err: any) {
+      console.error('Failed to sync reordered projects:', err);
+    }
+  };
+
+  const handleDragEnd = () => {
+    setDraggedIndex(null);
+    setDragOverIndex(null);
   };
 
   const handleSaveSingle = async (project: Project) => {
@@ -181,11 +234,30 @@ export const ProjectManagement: React.FC = () => {
           return (
             <div
               key={project.repo_name}
-              className="rounded-2xl bg-[#0a0a0f] border border-white/10 overflow-hidden transition-all duration-200 hover:border-white/20"
+              draggable
+              onDragStart={(e) => handleDragStart(e, index)}
+              onDragOver={(e) => handleDragOver(e, index)}
+              onDrop={(e) => handleDrop(e, index)}
+              onDragEnd={handleDragEnd}
+              className={`rounded-2xl bg-[#0a0a0f] border overflow-hidden transition-all duration-200 ${
+                draggedIndex === index
+                  ? 'opacity-40 border-indigo-500/50 scale-[0.99]'
+                  : dragOverIndex === index
+                  ? 'border-indigo-400 bg-indigo-950/20 shadow-[0_0_20px_rgba(99,102,241,0.2)]'
+                  : 'border-white/10 hover:border-white/20'
+              }`}
             >
               {/* Card Header Row */}
               <div className="flex items-center justify-between p-4 gap-3 bg-[#0c0c14]">
                 <div className="flex items-center gap-3">
+                  {/* Drag Handle */}
+                  <div 
+                    className="cursor-grab active:cursor-grabbing p-1 text-slate-500 hover:text-slate-300 transition-colors"
+                    title="Drag to reorder"
+                  >
+                    <GripVertical size={16} />
+                  </div>
+
                   {/* Order Controls */}
                   <div className="flex flex-col gap-0.5">
                     <button

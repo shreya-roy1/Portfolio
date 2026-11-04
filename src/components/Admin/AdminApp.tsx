@@ -271,7 +271,7 @@ export const AdminApp: React.FC = () => {
       </header>
 
       {/* Main Content Area */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className={activeTab === 'resume_studio' ? "w-full h-[calc(100vh-4rem)] p-2 sm:p-3 overflow-hidden" : "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8"}>
         {activeTab === 'projects' && <ProjectManagement />}
         {activeTab === 'resume_display' && (
           <ResumeDisplay
