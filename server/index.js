@@ -439,6 +439,40 @@ app.get('/api/resumes/published-pdf', async (req, res) => {
 });
 
 // Preview PDF by ID
+app.get('/api/resumes/single', async (req, res) => {
+  const session = await verifySession(req);
+  if (!session.authenticated) return res.status(401).json({ error: 'Unauthorized' });
+
+  const { id } = req.query;
+  if (!id) return res.status(400).json({ error: 'id is required' });
+
+  try {
+    const rows = await sql`SELECT * FROM portfolio_resume WHERE id = ${id} LIMIT 1`;
+    if (!rows || rows.length === 0) return res.status(404).json({ error: 'Resume not found' });
+
+    const meta = rows[0];
+    const s3Res = await s3.send(new GetObjectCommand({ Bucket: S3_BUCKET, Key: meta.s3_key }));
+    const latex = await streamToString(s3Res.Body);
+
+    return res.json({
+      id: meta.id,
+      title: meta.title,
+      target_role: meta.target_role || '',
+      target_company: meta.target_company || '',
+      jd_text: meta.jd_text || '',
+      template_name: meta.template_name || 'custom',
+      is_published: meta.is_published,
+      s3_key: meta.s3_key,
+      updated_at: meta.updated_at,
+      latex_content: latex,
+    });
+  } catch (err) {
+    console.error('Get single resume error:', err);
+    return res.status(500).json({ error: err.message });
+  }
+});
+
+// Preview PDF by ID
 app.get('/api/resumes/preview-pdf', async (req, res) => {
   const { id } = req.query;
   if (!id) return res.status(400).json({ error: 'id is required' });

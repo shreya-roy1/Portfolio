@@ -137,19 +137,19 @@ export const ResumeStudio: React.FC<ResumeStudioProps> = ({ initialResumeId }) =
 
   const loadResumeById = async (id: string) => {
     try {
-      const res = await axios.get('/api/resumes');
-      const resumes = res.data?.resumes || [];
-      const match = resumes.find((r: any) => r.id === id);
-      if (match) {
-        // Fetch raw tex code
-        // fetch resume metadata
-await axios.get(`/api/resumes/preview-pdf?id=${id}`, { responseType: 'blob' });
-        setActiveFileKey(`resume:${id}`);
-        setDocumentTitle(match.title);
-        setCurrentResumeId(match.id);
-        // Note: For preview, we compile or fetch
+      const res = await axios.get(`/api/resumes/single?id=${id}`);
+      const resume = res.data;
+      if (resume && resume.latex_content) {
+        setActiveFileKey(`resume:${resume.id}`);
+        setDocumentTitle(resume.title.endsWith('.tex') ? resume.title : `${resume.title}.tex`);
+        setCurrentResumeId(resume.id);
+        setCurrentCode(resume.latex_content);
+        handleCompile(resume.latex_content);
       }
-    } catch (e) {}
+    } catch (e: any) {
+      console.error('Failed to load resume:', e);
+      alert('Error loading saved resume: ' + (e.response?.data?.error || e.message));
+    }
   };
 
   const handleSelectTemplate = (template: { key: string; name: string; template: string }) => {
