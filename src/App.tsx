@@ -2,6 +2,7 @@ import { AdminApp } from './components/Admin/AdminApp';
 import React, { useState, useRef, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Lock, Mail, MessageSquare, Send, X, CheckCircle2, Home, User, Briefcase, Share2, Download } from 'lucide-react';
+import { Analytics } from '@vercel/analytics/react';
 import HeroSection from './sections/HeroSection';
 import AboutSection from './sections/AboutSection';
 import TechMatrixSection from './sections/TechMatrixSection';
@@ -409,6 +410,8 @@ export const App: React.FC = () => {
         )}
       </AnimatePresence>
 
+      {/* Vercel Web Analytics */}
+      <Analytics />
     </main>
   );
 };
