@@ -1,6 +1,7 @@
+import { AdminApp } from './components/Admin/AdminApp';
 import React, { useState, useRef, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Mail, MessageSquare, Send, X, CheckCircle2, Home, User, Briefcase, Share2, Download } from 'lucide-react';
+import { Lock, Mail, MessageSquare, Send, X, CheckCircle2, Home, User, Briefcase, Share2, Download } from 'lucide-react';
 import HeroSection from './sections/HeroSection';
 import AboutSection from './sections/AboutSection';
 import TechMatrixSection from './sections/TechMatrixSection';
@@ -8,6 +9,22 @@ import ProjectsSection from './sections/ProjectsSection';
 import FooterSection from './sections/FooterSection';
 
 export const App: React.FC = () => {
+  // Simple path routing for admin portal
+  const [isAdminPath, setIsAdminPath] = useState(() => 
+    typeof window !== 'undefined' && window.location.pathname.startsWith('/admin')
+  );
+
+  useEffect(() => {
+    const handlePopState = () => {
+      setIsAdminPath(window.location.pathname.startsWith('/admin'));
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  if (isAdminPath) {
+    return <AdminApp />;
+  }
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [isResumeOpen, setIsResumeOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
@@ -190,6 +207,16 @@ export const App: React.FC = () => {
       {/* 4. Footer Section (Socials & Resume download) */}
       <div ref={contactRef}>
         <FooterSection onResumeClick={handleResumePreview} />
+      {/* Hidden Admin Access */}
+      <div className="fixed bottom-3 left-3 z-30 opacity-20 hover:opacity-100 transition-opacity">
+        <a 
+          href="/admin" 
+          className="p-1.5 rounded-full bg-black/60 border border-white/10 text-slate-400 hover:text-indigo-400 flex items-center justify-center text-[10px]"
+          title="Admin Portal"
+        >
+          <Lock size={12} />
+        </a>
+      </div>
       </div>
 
       {/* Resume Preview Modal */}
@@ -220,7 +247,7 @@ export const App: React.FC = () => {
                 </div>
                 <div className="flex items-center gap-2">
                   <a
-                    href="/Resume.pdf"
+                    href="/api/resumes/published-pdf"
                     download="Shreya_Roy_Resume.pdf"
                     className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-[11px] uppercase tracking-widest text-[#E2E8F0] hover:bg-white/10 hover:text-indigo-400 transition-colors"
                   >
@@ -239,7 +266,7 @@ export const App: React.FC = () => {
 
               <div className="mt-3 overflow-hidden rounded-2xl border border-white/10 bg-white">
                 <iframe
-                  src="/Resume.pdf"
+                  src="/api/resumes/published-pdf"
                   title="Shreya Roy Resume"
                   className="h-[70vh] w-full min-h-[420px]"
                 />
