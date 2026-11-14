@@ -107,7 +107,7 @@ export const ResumeDisplay: React.FC<ResumeDisplayProps> = ({
 
           <div className="flex items-center gap-3">
             <a
-              href="/api/resumes/published-pdf"
+              href={`/resumes/${publishedResume ? publishedResume.title.replace(/\.tex$/i, '').replace(/\s+/g, '_') : 'Shreya_s_Resume'}.pdf`}
               target="_blank"
               rel="noopener noreferrer"
               className="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 border border-white/10 text-white text-xs font-semibold transition-colors flex items-center gap-2"
@@ -208,6 +208,15 @@ export const ResumeDisplay: React.FC<ResumeDisplayProps> = ({
                     >
                       <Eye size={14} />
                     </button>
+                    <a
+                      href={`/resumes/${resume.title.replace(/\.tex$/i, '').replace(/\s+/g, '_')}.pdf`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white transition-colors"
+                      title="Open Direct Public Link"
+                    >
+                      <ExternalLink size={14} />
+                    </a>
                     <button
                       onClick={() => onOpenStudioWithResume(resume.id)}
                       className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-indigo-400 hover:text-indigo-300 transition-colors"

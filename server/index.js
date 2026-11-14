@@ -438,6 +438,167 @@ app.get('/api/resumes/published-pdf', async (req, res) => {
   }
 });
 
+// -----------------------------------------------------------------------------
+// DYNAMIC RESUME ROUTING & RENDERING (e.g. /resumes/{filename}.pdf)
+// -----------------------------------------------------------------------------
+const dynamicPdfCache = new Map();
+
+function normalizeSlug(str) {
+  return String(str || '')
+    .toLowerCase()
+    .replace(/\.(pdf|tex)$/i, '')
+    .replace(/[^a-z0-9]+/g, '_')
+    .replace(/^_+|_+$/g, '');
+}
+
+function findResume(resumes, reqName, owner = 'shreya') {
+  const raw = String(reqName || '').replace(/\.(pdf|tex)$/i, '').trim();
+  const norm = normalizeSlug(raw);
+
+  // 1. Direct ID match
+  const byId = resumes.find(
+    (r) => r.id.toLowerCase() === raw.toLowerCase() || normalizeSlug(r.id) === norm
+  );
+  if (byId) return { match: byId, reason: 'id' };
+
+  // 2. Exact Title match (case-insensitive, ignoring .tex)
+  const byExactTitle = resumes.find(
+    (r) => r.title.replace(/\.tex$/i, '').toLowerCase() === raw.toLowerCase()
+  );
+  if (byExactTitle) return { match: byExactTitle, reason: 'exact_title' };
+
+  // 3. Slug match on Title
+  const bySlugTitle = resumes.find((r) => normalizeSlug(r.title) === norm);
+  if (bySlugTitle) return { match: bySlugTitle, reason: 'slug_title' };
+
+  // 4. Target Company or Role match
+  const byCompany = resumes.find(
+    (r) => r.target_company && normalizeSlug(r.target_company) === norm
+  );
+  if (byCompany) return { match: byCompany, reason: 'target_company' };
+
+  const byRole = resumes.find(
+    (r) => r.target_role && normalizeSlug(r.target_role) === norm
+  );
+  if (byRole) return { match: byRole, reason: 'target_role' };
+
+  // 5. Common aliases for published resume
+  const publishedAliases = new Set([
+    '',
+    'resume',
+    'cv',
+    'default',
+    'published',
+    'active',
+    'current',
+    'latest',
+    owner.toLowerCase(),
+    `${owner.toLowerCase()}_resume`,
+    `${owner.toLowerCase()}_cv`,
+    `${owner.toLowerCase()}s_resume`,
+    `${owner.toLowerCase()}_s_resume`,
+    'shreya_roy',
+    'shreya_roy_resume',
+    'shreya_roy_cv',
+  ]);
+
+  const published = resumes.find((r) => r.is_published) || resumes[0];
+
+  if (publishedAliases.has(norm)) {
+    return { match: published, reason: 'published_alias' };
+  }
+
+  // 6. Partial / substring match on Title
+  const bySubstring = resumes.find((r) => {
+    const rNorm = normalizeSlug(r.title);
+    return rNorm && norm && (rNorm.includes(norm) || norm.includes(rNorm));
+  });
+  if (bySubstring) return { match: bySubstring, reason: 'substring' };
+
+  return null;
+}
+
+async function handleResumeRender(req, res) {
+  const filename = req.params?.filename || req.query?.filename || '';
+
+  try {
+    const resumes = await sql`
+      SELECT id, title, target_company, target_role, template_name, s3_key, is_published, updated_at
+      FROM portfolio_resume
+      ORDER BY is_published DESC, updated_at DESC;
+    `;
+
+    if (!resumes || resumes.length === 0) {
+      return res.status(404).json({ error: 'No resumes found in database.' });
+    }
+
+    const resolution = findResume(resumes, filename, 'shreya');
+
+    if (!resolution || !resolution.match) {
+      return res.status(404).json({
+        error: `Resume not found matching '${filename || ''}'`,
+        available_resumes: resumes.map((r) => ({
+          title: r.title,
+          url: `/resumes/${r.title.replace(/\.tex$/i, '').replace(/\s+/g, '_')}.pdf`,
+          is_published: r.is_published,
+        })),
+      });
+    }
+
+    const resume = resolution.match;
+    const cacheKey = `${resume.id}_${new Date(resume.updated_at).getTime()}`;
+    const safeTitle = (resume.title || 'Shreya_Roy_Resume')
+      .replace(/\.tex$/i, '')
+      .replace(/[^a-zA-Z0-9_\-]/g, '_');
+    const downloadFilename = `${safeTitle}.pdf`;
+
+    // HTTP 304 If-None-Match check
+    const clientEtag = req.headers['if-none-match'];
+    if (clientEtag && clientEtag.replace(/^W\//, '') === `"${cacheKey}"`) {
+      res.setHeader('ETag', `"${cacheKey}"`);
+      res.setHeader('Cache-Control', 'public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800');
+      return res.status(304).end();
+    }
+
+    // Check in-memory cache
+    if (dynamicPdfCache.has(cacheKey)) {
+      const cachedBuffer = dynamicPdfCache.get(cacheKey);
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', `inline; filename="${downloadFilename}"`);
+      res.setHeader('ETag', `"${cacheKey}"`);
+      res.setHeader('Cache-Control', 'public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800');
+      return res.send(cachedBuffer);
+    }
+
+    // Fetch .tex content from Neon S3
+    const s3Res = await s3.send(new GetObjectCommand({
+      Bucket: S3_BUCKET,
+      Key: resume.s3_key,
+    }));
+    const latex = await streamToString(s3Res.Body);
+
+    // Compile to PDF
+    const pdfBuffer = await compileLatexToPdf(latex);
+
+    // Cache the result in memory
+    dynamicPdfCache.set(cacheKey, pdfBuffer);
+
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader('Content-Disposition', `inline; filename="${downloadFilename}"`);
+    res.setHeader('ETag', `"${cacheKey}"`);
+    res.setHeader('Cache-Control', 'public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800');
+    return res.send(pdfBuffer);
+  } catch (err) {
+    console.error('Dynamic resume PDF serving error:', err);
+    return res.status(500).json({ error: 'Failed to render resume PDF: ' + err.message });
+  }
+}
+
+app.get('/api/resumes/render/:filename', handleResumeRender);
+app.get('/api/resumes/render', handleResumeRender);
+app.get('/resumes/:filename', handleResumeRender);
+app.get('/resumes', handleResumeRender);
+
 // Preview PDF by ID
 app.get('/api/resumes/single', async (req, res) => {
   const session = await verifySession(req);

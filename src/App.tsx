@@ -247,7 +247,7 @@ export const App: React.FC = () => {
                 </div>
                 <div className="flex items-center gap-2">
                   <a
-                    href="/api/resumes/published-pdf"
+                    href="/resumes/Shreya_s_Resume.pdf"
                     download="Shreya_Roy_Resume.pdf"
                     className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-[11px] uppercase tracking-widest text-[#E2E8F0] hover:bg-white/10 hover:text-indigo-400 transition-colors"
                   >
@@ -266,7 +266,7 @@ export const App: React.FC = () => {
 
               <div className="mt-3 overflow-hidden rounded-2xl border border-white/10 bg-white">
                 <iframe
-                  src="/api/resumes/published-pdf"
+                  src="/resumes/Shreya_s_Resume.pdf"
                   title="Shreya Roy Resume"
                   className="h-[70vh] w-full min-h-[420px]"
                 />
