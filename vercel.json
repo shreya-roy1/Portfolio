@@ -2,14 +2,6 @@
   "version": 2,
   "rewrites": [
     {
-      "source": "/resumes/(.*)",
-      "destination": "/api/resumes/render/$1"
-    },
-    {
-      "source": "/resumes",
-      "destination": "/api/resumes/render"
-    },
-    {
       "source": "/api/(.*)",
       "destination": "/api"
     },

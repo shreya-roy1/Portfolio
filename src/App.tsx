@@ -1,7 +1,8 @@
 import { AdminApp } from './components/Admin/AdminApp';
 import React, { useState, useRef, useEffect } from 'react';
+import axios from 'axios';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Lock, Mail, MessageSquare, Send, X, CheckCircle2, Home, User, Briefcase, Share2, Download } from 'lucide-react';
+import { Lock, Mail, MessageSquare, Send, X, CheckCircle2, Home, User, Briefcase, Share2, Download, FileText } from 'lucide-react';
 import HeroSection from './sections/HeroSection';
 import AboutSection from './sections/AboutSection';
 import TechMatrixSection from './sections/TechMatrixSection';
@@ -28,6 +29,67 @@ export const App: React.FC = () => {
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [isResumeOpen, setIsResumeOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+
+  // Dynamic resume route state (e.g. /resumes/Shreya_s_Resume.pdf)
+  const [resumeRouteState, setResumeRouteState] = useState<{
+    isActive: boolean;
+    loading: boolean;
+    found: boolean;
+    requestedName: string;
+    resume: {
+      id: string;
+      title: string;
+      safe_title: string;
+      pdf_url: string;
+      target_role?: string;
+      target_company?: string;
+    } | null;
+    availableResumes: Array<{ title: string; url: string }>;
+  }>(() => {
+    const isResume = typeof window !== 'undefined' && window.location.pathname.startsWith('/resumes');
+    const slug = typeof window !== 'undefined' ? window.location.pathname.replace(/^\/resumes\/?/, '') : '';
+    return {
+      isActive: isResume,
+      loading: isResume,
+      found: false,
+      requestedName: slug,
+      resume: null,
+      availableResumes: [],
+    };
+  });
+
+  useEffect(() => {
+    if (resumeRouteState.isActive && resumeRouteState.loading) {
+      axios
+        .get('/api/resumes/resolve?filename=' + encodeURIComponent(resumeRouteState.requestedName))
+        .then((res) => {
+          if (res.data?.found) {
+            setResumeRouteState((prev) => ({
+              ...prev,
+              loading: false,
+              found: true,
+              resume: res.data.resume,
+              availableResumes: [],
+            }));
+          } else {
+            setResumeRouteState((prev) => ({
+              ...prev,
+              loading: false,
+              found: false,
+              availableResumes: res.data?.available_resumes || [],
+            }));
+          }
+        })
+        .catch(() => {
+          setResumeRouteState((prev) => ({
+            ...prev,
+            loading: false,
+            found: false,
+            availableResumes: [],
+          }));
+        });
+    }
+  }, [resumeRouteState.isActive, resumeRouteState.loading, resumeRouteState.requestedName]);
   
   // Header animation states
   const [activeTab, setActiveTab] = useState<string>('home');
@@ -221,7 +283,7 @@ export const App: React.FC = () => {
 
       {/* Resume Preview Modal */}
       <AnimatePresence>
-        {isResumeOpen && (
+        {(isResumeOpen || (resumeRouteState.isActive && resumeRouteState.found && !!resumeRouteState.resume)) && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -229,7 +291,13 @@ export const App: React.FC = () => {
             className="fixed inset-0 z-[60] flex items-center justify-center p-4"
           >
             <div
-              onClick={() => setIsResumeOpen(false)}
+              onClick={() => {
+                setIsResumeOpen(false);
+                if (resumeRouteState.isActive) {
+                  window.history.pushState({}, '', '/');
+                  setResumeRouteState((prev) => ({ ...prev, isActive: false }));
+                }
+              }}
               className="absolute inset-0 bg-black/85 backdrop-blur-md"
             />
 
@@ -243,19 +311,27 @@ export const App: React.FC = () => {
               <div className="flex items-center justify-between gap-3 border-b border-white/10 pb-3">
                 <div>
                   <p className="text-[10px] uppercase tracking-widest text-indigo-400">Resume Preview</p>
-                  <h3 className="text-sm md:text-base font-semibold text-[#E2E8F0]">Shreya Roy — CV</h3>
+                  <h3 className="text-sm md:text-base font-semibold text-[#E2E8F0]">
+                    {resumeRouteState.resume ? `Shreya Roy — ${resumeRouteState.resume.title}` : 'Shreya Roy — CV'}
+                  </h3>
                 </div>
                 <div className="flex items-center gap-2">
                   <a
-                    href="/resumes/Shreya_s_Resume.pdf"
-                    download="Shreya_Roy_Resume.pdf"
+                    href={resumeRouteState.resume?.pdf_url || '/api/resumes/published-pdf'}
+                    download={resumeRouteState.resume ? `${resumeRouteState.resume.safe_title}.pdf` : 'Shreya_Roy_Resume.pdf'}
                     className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-[11px] uppercase tracking-widest text-[#E2E8F0] hover:bg-white/10 hover:text-indigo-400 transition-colors"
                   >
                     <Download size={14} />
                     Download
                   </a>
                   <button
-                    onClick={() => setIsResumeOpen(false)}
+                    onClick={() => {
+                      setIsResumeOpen(false);
+                      if (resumeRouteState.isActive) {
+                        window.history.pushState({}, '', '/');
+                        setResumeRouteState((prev) => ({ ...prev, isActive: false }));
+                      }
+                    }}
                     className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-[#E2E8F0] hover:bg-white/10 hover:text-indigo-400 transition-colors"
                     aria-label="Close resume preview"
                   >
@@ -266,10 +342,121 @@ export const App: React.FC = () => {
 
               <div className="mt-3 overflow-hidden rounded-2xl border border-white/10 bg-white">
                 <iframe
-                  src="/resumes/Shreya_s_Resume.pdf"
+                  src={resumeRouteState.resume?.pdf_url || '/api/resumes/published-pdf'}
                   title="Shreya Roy Resume"
                   className="h-[70vh] w-full min-h-[420px]"
                 />
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Dynamic Resume Loading Overlay */}
+      <AnimatePresence>
+        {resumeRouteState.isActive && resumeRouteState.loading && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[60] flex items-center justify-center p-4"
+          >
+            <div className="absolute inset-0 bg-black/85 backdrop-blur-md" />
+            <div className="relative z-10 flex flex-col items-center gap-3 p-8 rounded-3xl bg-[#030305]/95 border border-white/10 shadow-2xl">
+              <div className="w-8 h-8 rounded-full border-2 border-indigo-500 border-t-transparent animate-spin" />
+              <p className="text-xs font-mono uppercase tracking-widest text-indigo-400">Loading Resume...</p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Dynamic Resume 404 Modal */}
+      <AnimatePresence>
+        {resumeRouteState.isActive && !resumeRouteState.found && !resumeRouteState.loading && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[60] flex items-center justify-center p-4"
+          >
+            <div
+              onClick={() => {
+                window.history.pushState({}, '', '/');
+                setResumeRouteState((prev) => ({ ...prev, isActive: false }));
+              }}
+              className="absolute inset-0 bg-black/85 backdrop-blur-md"
+            />
+            <motion.div
+              initial={{ opacity: 0, y: 18, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 18, scale: 0.98 }}
+              transition={{ duration: 0.25 }}
+              className="relative z-10 w-full max-w-xl rounded-3xl border border-white/10 bg-[#0a0a0f]/95 p-6 md:p-8 shadow-[0_30px_80px_rgba(0,0,0,0.9)] backdrop-blur-xl space-y-6"
+            >
+              <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                <div className="flex items-center gap-2">
+                  <span className="flex h-2 w-2 rounded-full bg-rose-500 animate-pulse" />
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-rose-400">
+                    404 // RESUME NOT FOUND
+                  </span>
+                </div>
+                <button
+                  onClick={() => {
+                    window.history.pushState({}, '', '/');
+                    setResumeRouteState((prev) => ({ ...prev, isActive: false }));
+                  }}
+                  className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-400 hover:text-white hover:bg-white/10 transition-colors"
+                  aria-label="Close"
+                >
+                  <X size={14} />
+                </button>
+              </div>
+
+              <div className="space-y-2">
+                <h3 className="text-xl font-bold text-white">Resume Document Not Found</h3>
+                <p className="text-xs text-slate-400 leading-relaxed">
+                  The requested resume <code className="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-rose-300 font-mono text-[11px]">{resumeRouteState.requestedName}</code> could not be located in our database.
+                </p>
+              </div>
+
+              {resumeRouteState.availableResumes.length > 0 && (
+                <div className="space-y-3 pt-2">
+                  <p className="text-[11px] font-semibold uppercase tracking-wider text-indigo-400">
+                    Available Resumes:
+                  </p>
+                  <div className="flex flex-col gap-2">
+                    {resumeRouteState.availableResumes.map((item) => (
+                      <a
+                        key={item.url}
+                        href={item.url}
+                        className="flex items-center justify-between px-4 py-3 rounded-xl bg-white/[0.03] hover:bg-white/[0.08] border border-white/10 hover:border-indigo-500/50 text-white text-xs transition-all group"
+                      >
+                        <div className="flex items-center gap-2.5">
+                          <FileText size={14} className="text-indigo-400 group-hover:scale-110 transition-transform" />
+                          <span className="font-medium group-hover:text-indigo-300 transition-colors">
+                            {item.title}
+                          </span>
+                        </div>
+                        <span className="text-[10px] text-slate-500 font-mono group-hover:text-indigo-400 transition-colors">
+                          Open PDF →
+                        </span>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              <div className="pt-4 flex items-center justify-between border-t border-white/10">
+                <button
+                  onClick={() => {
+                    window.history.pushState({}, '', '/');
+                    setResumeRouteState((prev) => ({ ...prev, isActive: false }));
+                  }}
+                  className="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-[0_0_20px_rgba(99,102,241,0.3)] transition-colors"
+                >
+                  Explore Full Portfolio
+                </button>
+                <span className="text-[11px] text-slate-500 font-mono">Shreya Roy</span>
               </div>
             </motion.div>
           </motion.div>

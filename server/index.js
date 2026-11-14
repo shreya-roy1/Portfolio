@@ -540,7 +540,6 @@ async function handleResumeRender(req, res) {
         available_resumes: resumes.map((r) => ({
           title: r.title,
           url: `/resumes/${r.title.replace(/\.tex$/i, '').replace(/\s+/g, '_')}.pdf`,
-          is_published: r.is_published,
         })),
       });
     }
@@ -598,6 +597,59 @@ app.get('/api/resumes/render/:filename', handleResumeRender);
 app.get('/api/resumes/render', handleResumeRender);
 app.get('/resumes/:filename', handleResumeRender);
 app.get('/resumes', handleResumeRender);
+
+app.get('/api/resumes/resolve', async (req, res) => {
+  const filename = req.query.filename || '';
+
+  try {
+    const resumes = await sql`
+      SELECT id, title, target_company, target_role, template_name, s3_key, is_published, updated_at
+      FROM portfolio_resume
+      ORDER BY is_published DESC, updated_at DESC;
+    `;
+
+    if (!resumes || resumes.length === 0) {
+      return res.json({
+        found: false,
+        error: 'No resumes found in database.',
+        available_resumes: [],
+      });
+    }
+
+    const resolution = findResume(resumes, filename, 'shreya');
+
+    if (!resolution || !resolution.match) {
+      return res.json({
+        found: false,
+        error: `Resume not found matching '${filename || ''}'`,
+        available_resumes: resumes.map((r) => ({
+          title: r.title,
+          url: `/resumes/${r.title.replace(/\.tex$/i, '').replace(/\s+/g, '_')}.pdf`,
+        })),
+      });
+    }
+
+    const resume = resolution.match;
+    const safeTitle = (resume.title || 'Shreya_Roy_Resume')
+      .replace(/\.tex$/i, '')
+      .replace(/[^a-zA-Z0-9_\-]/g, '_');
+
+    return res.json({
+      found: true,
+      resume: {
+        id: resume.id,
+        title: resume.title,
+        safe_title: safeTitle,
+        target_role: resume.target_role || null,
+        target_company: resume.target_company || null,
+        pdf_url: `/api/resumes/render/${encodeURIComponent(safeTitle)}.pdf`,
+      },
+    });
+  } catch (err) {
+    console.error('Resolve resume error:', err);
+    return res.status(500).json({ error: err.message });
+  }
+});
 
 // Preview PDF by ID
 app.get('/api/resumes/single', async (req, res) => {
