@@ -11,12 +11,14 @@ interface PdfViewerProps {
   url: string;
   title?: string;
   className?: string;
+  showDownload?: boolean;
 }
 
 export const PdfViewer: React.FC<PdfViewerProps> = ({
   url,
   title = 'Resume',
   className = '',
+  showDownload = false,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasContainerRef = useRef<HTMLDivElement>(null);
@@ -221,14 +223,16 @@ export const PdfViewer: React.FC<PdfViewerProps> = ({
             <span className="hidden sm:inline">New Tab</span>
           </a>
 
-          <a
-            href={absoluteUrl}
-            download={`${title.replace(/\.pdf$/i, '')}.pdf`}
-            className="inline-flex items-center gap-1 px-3 py-1 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-[11px] font-semibold shadow-[0_0_12px_rgba(99,102,241,0.3)] transition-colors"
-          >
-            <Download size={12} />
-            <span>Download</span>
-          </a>
+          {showDownload && (
+            <a
+              href={absoluteUrl}
+              download={`${title.replace(/\.pdf$/i, '')}.pdf`}
+              className="inline-flex items-center gap-1 px-3 py-1 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-[11px] font-semibold shadow-[0_0_12px_rgba(99,102,241,0.3)] transition-colors"
+            >
+              <Download size={12} />
+              <span>Download</span>
+            </a>
+          )}
         </div>
       </div>
 
