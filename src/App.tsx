@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Lock, Mail, MessageSquare, Send, X, CheckCircle2, Home, User, Briefcase, Share2, Download, FileText } from 'lucide-react';
+import { PdfViewer } from './components/PdfViewer';
 import HeroSection from './sections/HeroSection';
 import AboutSection from './sections/AboutSection';
 import TechMatrixSection from './sections/TechMatrixSection';
@@ -340,11 +341,11 @@ export const App: React.FC = () => {
                 </div>
               </div>
 
-              <div className="mt-3 overflow-hidden rounded-2xl border border-white/10 bg-white">
-                <iframe
-                  src={resumeRouteState.resume?.pdf_url || '/api/resumes/published-pdf'}
-                  title="Shreya Roy Resume"
-                  className="h-[70vh] w-full min-h-[420px]"
+              <div className="mt-3 overflow-hidden rounded-2xl h-[70vh] min-h-[420px]">
+                <PdfViewer
+                  url={resumeRouteState.resume?.pdf_url || '/api/resumes/published-pdf'}
+                  title={resumeRouteState.resume ? resumeRouteState.resume.safe_title : 'Shreya_Roy_Resume'}
+                  className="h-full"
                 />
               </div>
             </motion.div>

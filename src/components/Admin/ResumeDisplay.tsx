@@ -10,6 +10,7 @@ import {
   Plus
 } from 'lucide-react';
 import axios from 'axios';
+import { PdfViewer } from '../PdfViewer';
 
 interface ResumeRecord {
   id: string;
@@ -280,9 +281,9 @@ export const ResumeDisplay: React.FC<ResumeDisplayProps> = ({
                 </button>
               </div>
             </div>
-            <div className="flex-1 bg-neutral-900">
-              <iframe
-                src={`/api/resumes/preview-pdf?id=${previewId}`}
+            <div className="flex-1 bg-neutral-900 overflow-hidden">
+              <PdfViewer
+                url={`/api/resumes/preview-pdf?id=${previewId}`}
                 title={previewTitle}
                 className="w-full h-full"
               />
